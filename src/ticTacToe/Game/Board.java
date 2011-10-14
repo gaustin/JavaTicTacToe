@@ -13,8 +13,10 @@ public class Board {
 	public List<Integer> emptySpaces() {
 		ArrayList<Integer> empties = new ArrayList<Integer>();
 		
-		for (char c : cells)
-			empties.add((int)c);
+		for (int i = 0; i < cells.length; i++) {
+			if (!isTaken(i))
+				empties.add(i);
+		}
 		
 		return empties;
 	}
