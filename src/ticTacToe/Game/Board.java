@@ -10,6 +10,13 @@ public class Board {
 		cells = new char[x*y];
 	}
 
+	public boolean full() {
+		if (emptySpaces().size() == 0)
+			return true;
+		else
+			return false;
+	}
+	
 	public List<Integer> emptySpaces() {
 		ArrayList<Integer> empties = new ArrayList<Integer>();
 		
@@ -29,16 +36,8 @@ public class Board {
 		return cells[position] == mark;
 	}
 	
-	public boolean markPosition(char mark, int position) throws Exception {
-		if (isTakenBy(mark, position))
-			return true;
-		
-		if (isTaken(position))
-			throw new Exception("This space is already marked.");
-		
+	public void markPosition(char mark, int position) throws Exception {		
 		cells[position] = mark;
-		
-		return true;
 	}
 
 }

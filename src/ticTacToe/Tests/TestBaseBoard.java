@@ -39,23 +39,15 @@ public class TestBaseBoard extends TestCase {
 	}
 
 	public void testMakeMark() throws Exception {
-		assertEquals(true, board.markPosition('O', 4));
+		board.markPosition('O', 4);
 		assertEquals(true, board.isTaken(4));
 	}
 	
-	public void testMarkingMarkedCellThrowsException() throws Exception {
-		board.markPosition('O', 4);
-		
-		try {
-			board.markPosition('X', 4);
-			fail("Expected exception.");
-		} catch (Exception ex) {
-			// We want this exception...
+	public void testFull() throws Exception {
+		int count = board.emptySpaces().size();
+		for (int i = 0; i < count; i++) {
+			board.markPosition('O', i);
 		}
-	}
-	
-	public void testNoOpMark() throws Exception {
-		board.markPosition('O', 4);
-		assertEquals(true, board.markPosition('O', 4));
+		assertTrue(board.full());
 	}
 }
