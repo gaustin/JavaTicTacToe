@@ -11,5 +11,5 @@ public abstract class Player<TMark> {
 		return m_mark;
 	}
 	
-	public abstract int getChoice(Board board);
+	public abstract int getChoice(Board<TMark> board);
 }

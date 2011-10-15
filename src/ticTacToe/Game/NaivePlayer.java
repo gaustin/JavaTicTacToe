@@ -9,7 +9,7 @@ public class NaivePlayer extends Player<Character> {
 	}
 
 	@Override
-	public int getChoice(Board board) {
+	public int getChoice(Board<Character> board) {
 		Random generator = new Random();
 		List<Integer> empties = board.emptySpaces();
 		
