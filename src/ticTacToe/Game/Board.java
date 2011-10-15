@@ -1,13 +1,15 @@
 package ticTacToe.Game;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
-public class Board {
+public class Board<TCell> {
 	
-	private char[] cells = null;
+	private TCell[] cells = null;
 	
+	@SuppressWarnings("unchecked")
 	public Board(int x, int y) {
-		cells = new char[x*y];
+		cells = (TCell[])Array.newInstance(Object.class, x*y);
 	}
 
 	public boolean full() {
@@ -15,6 +17,15 @@ public class Board {
 			return true;
 		else
 			return false;
+	}
+	
+	public List<TCell> spaces() {
+		ArrayList<TCell> spaces = new ArrayList<TCell>();
+		
+		for (TCell c : cells)
+			spaces.add(c);
+		
+		return spaces;
 	}
 	
 	public List<Integer> emptySpaces() {
@@ -29,14 +40,14 @@ public class Board {
 	}
 
 	public boolean isTaken(int position) {
-		return cells[position] != 0;
+		return cells[position] != null;
 	}
 
-	private boolean isTakenBy(char mark, int position) {
+	private boolean isTakenBy(TCell mark, int position) {
 		return cells[position] == mark;
 	}
 	
-	public void markPosition(char mark, int position) throws Exception {		
+	public void markPosition(TCell mark, int position) {		
 		cells[position] = mark;
 	}
 

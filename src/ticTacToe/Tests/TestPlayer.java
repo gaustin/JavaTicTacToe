@@ -6,11 +6,11 @@ import ticTacToe.Game.NaivePlayer;
 
 public class TestPlayer extends TestCase {
 	private NaivePlayer player;
-	private Board board;
+	private Board<Character> board;
 	
 	public void setUp() {
 		player = new NaivePlayer('O');
-		board = new Board(3, 3);
+		board = new Board<Character>(3, 3);
 	}
 
 	public void testPlayerHasMark() {
