@@ -13,6 +13,11 @@ public class TestBaseBoard extends TestCase {
 		board = new Board<Character>(3, 3);
 	}
 	
+	public void testMarkAt() {
+		board.markPosition('O', 4);
+		assertEquals((Character)'O', board.markAt(4));
+	}
+	
 	public void testGetSpaces() {
 		board.markPosition('O', 4);
 		board.markPosition('X', 0);

@@ -43,12 +43,16 @@ public class Board<TCell> {
 		return cells[position] != null;
 	}
 
-	private boolean isTakenBy(TCell mark, int position) {
+	public boolean isTakenBy(TCell mark, int position) {
 		return cells[position] == mark;
 	}
 	
 	public void markPosition(TCell mark, int position) {		
 		cells[position] = mark;
+	}
+
+	public TCell markAt(int position) {
+		return (TCell)cells[position];
 	}
 
 }

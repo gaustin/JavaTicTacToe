@@ -19,6 +19,6 @@ public class TestPlayer extends TestCase {
 	
 	public void testPlayerChoosesMove() {
 		int choice =  player.getChoice(board);
-		assertTrue(choice > 0 && choice < 9);
+		assertTrue(choice > 0 && choice < board.spaces().size());
 	}
 }
