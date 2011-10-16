@@ -21,4 +21,8 @@ public class TestPlayer extends TestCase {
 		int choice =  player.getChoice(board);
 		assertTrue(choice > 0 && choice < board.spaces().size());
 	}
+	
+	public void testPlayerChangesBoard() {
+		
+	}
 }

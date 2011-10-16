@@ -1,9 +1,9 @@
 package ticTacToe.Game;
 
-public interface IScorer {
+public interface IScorer<TMark> {
 
-	public boolean gameOver();
+	public boolean isGameOver();
 
-	public Character getWinner();
+	public TMark getWinner();
 
 }

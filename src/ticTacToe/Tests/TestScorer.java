@@ -4,13 +4,12 @@ import java.util.List;
 
 import junit.framework.TestCase;
 import ticTacToe.Game.Board;
-import ticTacToe.Game.IScorer;
+import ticTacToe.Game.TicTacToeScorer;
 import ticTacToe.Game.NaivePlayer;
-import ticTacToe.Mocks.MockScorer;
 
 public class TestScorer extends TestCase{
 
-	private IScorer scorer;
+	private TicTacToeScorer scorer;
 	private Board<Character> board;
 	private NaivePlayer xPlayer;
 	private NaivePlayer oPlayer;
@@ -28,7 +27,7 @@ public class TestScorer extends TestCase{
 	
 	public void setUp(){
 		board = new Board<Character>(3, 3);
-		scorer = new MockScorer(board, winningConfigurations);
+		scorer = new TicTacToeScorer(board, winningConfigurations);
 		xPlayer = new NaivePlayer((Character)'X');
 		xPlayer = new NaivePlayer((Character)'O');
 	}
@@ -37,9 +36,9 @@ public class TestScorer extends TestCase{
 		for (int i : winningConfigurations[0]) {
 			board.markPosition((Character)'X', i);
 			if (i < 2)
-				assertFalse(scorer.gameOver());
+				assertFalse(scorer.isGameOver());
 			else
-				assertTrue(scorer.gameOver());
+				assertTrue(scorer.isGameOver());
 		}
 		
 	}
@@ -48,7 +47,7 @@ public class TestScorer extends TestCase{
 		List<Integer> spaces = board.emptySpaces();
 		for (int i : spaces)
 			board.markPosition(new Character((char)('A' + i)), i);
-		assertTrue(scorer.gameOver());
+		assertTrue(scorer.isGameOver());
 	}
 	
 	public void testGetWinner() {
@@ -56,5 +55,22 @@ public class TestScorer extends TestCase{
 			board.markPosition((Character)'X', i);
 		}
 		assertEquals((Character)'X', scorer.getWinner());
+	}
+	
+	public void testIsTie() {
+		Character xMark = new Character('X');
+		Character oMark = new Character('O');
+		
+		board.markPosition(xMark, 0);
+		board.markPosition(oMark, 1);
+		board.markPosition(xMark, 2);
+		board.markPosition(oMark, 3);
+		board.markPosition(oMark, 4);
+		board.markPosition(xMark, 5);
+		board.markPosition(oMark, 6);
+		board.markPosition(xMark, 7);
+		board.markPosition(oMark, 8);
+		assertEquals(null, scorer.getWinner());
+		assertTrue(scorer.isDraw());
 	}
 }
