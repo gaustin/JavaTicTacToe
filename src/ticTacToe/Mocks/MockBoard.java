@@ -5,7 +5,7 @@ import ticTacToe.Game.Board;
 public class MockBoard extends Board {
 
 	public boolean markPositionCalled = false;
-	public int markPositionCalledCount = 0;
+	public boolean resetCalled = false;
 
 	public MockBoard(int spacesInBoard) {
 		super(spacesInBoard);
@@ -13,7 +13,11 @@ public class MockBoard extends Board {
 	
 	public void markPosition(char mark, int position) {		
 		markPositionCalled = true;
-		markPositionCalledCount += 1;
 		super.markPosition(mark, position);
+	}
+	
+	public void reset() {
+		resetCalled = true;
+		super.reset();
 	}
 }

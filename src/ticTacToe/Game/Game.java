@@ -35,7 +35,10 @@ public class Game {
 			
 			turn++;
 		}
-		
-		System.out.println(board.toString());
+	}
+
+	public void reset() {
+		board.reset();
+		scorer.reset();
 	}
 }

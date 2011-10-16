@@ -6,6 +6,10 @@ public class Board {
 	
 	private char[] cells = null;
 	
+	public void reset() {
+		cells = new char[cells.length];
+	}
+	
 	public Board(int x, int y) {
 		cells = new char[x*y];
 	}

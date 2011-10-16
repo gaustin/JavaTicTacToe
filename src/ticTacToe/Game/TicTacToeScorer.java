@@ -20,6 +20,10 @@ public class TicTacToeScorer implements IScorer {
 		this.board = board;
 	}
 
+	public void reset() {
+		winner = 0;
+	}
+	
 	@Override
 	public boolean isGameOver() {
 		if (board.full() ||

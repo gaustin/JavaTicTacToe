@@ -1,8 +1,6 @@
 package ticTacToe.Tests;
 
-import ticTacToe.Game.Board;
 import ticTacToe.Game.Game;
-import ticTacToe.Game.Referee;
 import ticTacToe.Mocks.MockBoard;
 import ticTacToe.Mocks.MockPlayer;
 import ticTacToe.Mocks.MockReferee;
@@ -31,14 +29,16 @@ public class TestGame extends TestCase {
 		game.play();
 		
 		assertTrue(xPlayer.getChoiceCalled);
-		assertTrue(4 <= xPlayer.getChoiceCallCount);
 		assertTrue(oPlayer.getChoiceCalled);
-		assertTrue(4 <= oPlayer.getChoiceCallCount);
-		
 		assertTrue(referee.validateMoveCalled);
-		assertTrue(referee.validateMoveCalledCount >= 9);
-		
 		assertTrue(board.markPositionCalled);
-		assertTrue(board.markPositionCalledCount <= 9);
+		assertTrue(scorer.isGameOverCalled);
+	}
+	
+	public void testReset() {
+		game.reset();
+		
+		assertTrue(board.resetCalled);
+		assertTrue(scorer.resetCalled);
 	}
 }
