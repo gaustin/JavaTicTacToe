@@ -7,29 +7,28 @@ import junit.framework.TestCase;
 
 public class TestBaseBoard extends TestCase {
 
-	Board<Character> board;
+	Board board;
 	
 	public void setUp() {
-		board = new Board<Character>(3, 3);
+		board = new Board(3, 3);
 	}
 	
 	public void testMarkAt() {
 		board.markPosition('O', 4);
-		assertEquals((Character)'O', board.markAt(4));
+		assertEquals('O', board.markAt(4));
 	}
 	
 	public void testGetSpaces() {
 		board.markPosition('O', 4);
 		board.markPosition('X', 0);
-		List<Character> spaces = board.spaces();
-		assertEquals(9, spaces.size());
-		for (int i = 0; i < spaces.size(); i++) {
+		
+		for (int i = 0; i < 9; i++) {
 			if (i == 0)
-				assertEquals((Character)'X', spaces.get(i));
+				assertEquals('X', board.markAt(i));
 			else if (i == 4)
-				assertEquals((Character)'O', spaces.get(i));
+				assertEquals('O', board.markAt(i));
 			else
-				assertEquals(null, spaces.get(i));
+				assertEquals(0, board.markAt(i));
 		}
 	}
 	
@@ -60,15 +59,6 @@ public class TestBaseBoard extends TestCase {
 			board.markPosition('O', i);
 		}
 		assertTrue(board.full());
-	}
-	
-	public void testStringBoard() {
-		Board<String> sBoard = new Board<String>(3, 3);
-		sBoard.markPosition("Floyd", 4);
-		
-		assertTrue(sBoard.isTaken(4));
-		
-		assertEquals(8, sBoard.emptySpaces().size());
 	}
 	
 	private List<Integer> list(int... ints) {

@@ -1,11 +1,24 @@
 package ticTacToe.Tests;
 
+import junit.framework.TestCase;
+import ticTacToe.Game.Board;
 import ticTacToe.Game.Referee;
 
-public class TestReferee {
-
+public class TestReferee extends TestCase {
+	private Referee ref;
+	private Board board;
+	
 	public void setUp() {
-		Referee ref = new Referee();
-		//Player<Character> xPlayer = new NaivePlayer((Character)'X');
+		ref = new Referee();
+		board = new Board(3, 3);
+	}
+	
+	public void testDoesNotAllowInvalidMove() {
+		board.markPosition('O', 4);
+		assertEquals(false, ref.validateMove(board, 'X', 4));
+	}
+	
+	public void testAllowValidMove() {
+		assertEquals(true, ref.validateMove(board, 'O', 4));
 	}
 }

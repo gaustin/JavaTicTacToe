@@ -5,14 +5,11 @@ import java.util.List;
 import junit.framework.TestCase;
 import ticTacToe.Game.Board;
 import ticTacToe.Game.TicTacToeScorer;
-import ticTacToe.Game.NaivePlayer;
 
 public class TestScorer extends TestCase{
 
 	private TicTacToeScorer scorer;
-	private Board<Character> board;
-	private NaivePlayer xPlayer;
-	private NaivePlayer oPlayer;
+	private Board board;
 	
 	private int[][] winningConfigurations = {
 			{ 0, 1, 2 },
@@ -26,10 +23,8 @@ public class TestScorer extends TestCase{
 	};
 	
 	public void setUp(){
-		board = new Board<Character>(3, 3);
-		scorer = new TicTacToeScorer(board, winningConfigurations);
-		xPlayer = new NaivePlayer((Character)'X');
-		xPlayer = new NaivePlayer((Character)'O');
+		board = new Board(3, 3);
+		scorer = new TicTacToeScorer(board);
 	}
 	
 	public void testGameOverByWinner() {
@@ -40,7 +35,17 @@ public class TestScorer extends TestCase{
 			else
 				assertTrue(scorer.isGameOver());
 		}
-		
+	}
+	
+	public void testWinningConfigurations() {
+		for (int[] configuration : winningConfigurations) {
+			for (int position : configuration) {
+				board.markPosition('X', position);
+			}
+			assertTrue(scorer.isGameOver());
+			assertEquals('X', scorer.getWinner());
+			board.clear();
+		}
 	}
 
 	public void testGameOverBoardFilled() {
@@ -52,14 +57,14 @@ public class TestScorer extends TestCase{
 	
 	public void testGetWinner() {
 		for (int i : winningConfigurations[0]) {
-			board.markPosition((Character)'X', i);
+			board.markPosition('X', i);
 		}
-		assertEquals((Character)'X', scorer.getWinner());
+		assertEquals('X', scorer.getWinner());
 	}
 	
 	public void testIsTie() {
-		Character xMark = new Character('X');
-		Character oMark = new Character('O');
+		char xMark = 'X';
+		char oMark = 'O';
 		
 		board.markPosition(xMark, 0);
 		board.markPosition(oMark, 1);
@@ -70,7 +75,7 @@ public class TestScorer extends TestCase{
 		board.markPosition(oMark, 6);
 		board.markPosition(xMark, 7);
 		board.markPosition(oMark, 8);
-		assertEquals(null, scorer.getWinner());
+		assertEquals(0, scorer.getWinner());
 		assertTrue(scorer.isDraw());
 	}
 }

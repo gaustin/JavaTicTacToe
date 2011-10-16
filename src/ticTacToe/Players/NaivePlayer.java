@@ -1,15 +1,17 @@
-package ticTacToe.Game;
+package ticTacToe.Players;
 
 import java.util.*;
 
-public class NaivePlayer extends Player<Character> {
+import ticTacToe.Game.Board;
+
+public class NaivePlayer extends Player {
 
 	public NaivePlayer(Character mark) {
 		super(mark);
 	}
 
 	@Override
-	public int getChoice(Board<Character> board) {
+	public int getChoice(Board board) {
 		Random generator = new Random();
 		List<Integer> empties = board.emptySpaces();
 		
