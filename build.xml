@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     Oct 17, 2011 11:26:31 AM                                                        
+
+     TicTacToe    
+                   
+     gaustin                                                                
+     ====================================================================== -->
+<project name="TicTacToe" default="test">
+	<property name="build.loc" location="build"/>
+	<property name="source.loc" location="src" />
+	<property name="test.loc" location="src/ticTacToe/Tests" />
+	<property name="mocks.loc" location="src/ticTacToe/Mocks" />
+	<property name="lib.loc" location="lib" />
+	
+    <description>
+            TicTacToe
+    </description>
+
+    <path id="classpath">
+        <pathelement location="${build.loc}" />
+        <fileset dir="${lib.loc}">
+            <include name="*.jar" />
+        </fileset>
+    </path>
+	
+	<path id="classpath.test">
+	    <pathelement location="${test.loc}" />
+		<path refid="classpath"></path>
+	</path>
+	
+    <target name="compile">
+        <mkdir dir="${build.loc}" />
+        <javac srcdir="${source.loc}" destdir="${build.loc}">
+            <include name="**/*.java"/>
+        </javac>        
+    </target>
+	
+	<target name="compile-test" depends="clean, compile">
+        <mkdir dir="${build.loc}" />
+	    <javac srcdir="${test.loc}" destdir="${build.loc}">
+	      <classpath refid="classpath.test"/>
+	    </javac>
+	</target>
+	
+    <target name="test" depends="clean, compile-test">
+	    <junit fork="yes" haltonfailure="yes">
+	        <classpath refid="classpath.test" />
+	        <batchtest>
+	            <fileset dir="${build.loc}" includes="**/Test*.class" />
+	        </batchtest>
+	    </junit>
+    </target>
+
+    <target name="play" depends="clean,compile">
+        <java classname="ticTacToe.UI.TicTacToe" fork="yes">
+            <classpath refid="classpath" />
+        </java>
+    </target>
+	
+    <target name="clean">
+        <delete dir="${build.loc}"></delete>
+    </target>
+</project>
