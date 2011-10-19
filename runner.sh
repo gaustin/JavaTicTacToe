@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ -f "build/ticTacToe/UI/TicTacToe.class" ]
+if [ -f "build/tictactoe/ui/TicTacToe.class" ]
 then
  echo "Running TicTacToe"
 else
@@ -9,4 +9,4 @@ else
 fi
 
 
-java -cp build ticTacToe.UI.TicTacToe
+java -cp build tictactoe.ui.TicTacToe
