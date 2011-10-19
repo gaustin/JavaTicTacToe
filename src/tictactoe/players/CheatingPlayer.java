@@ -1,13 +1,13 @@
-package ticTacToe.Players;
+package tictactoe.players;
 
 import java.util.List;
 import java.util.Random;
 
-import ticTacToe.Game.Board;
+import tictactoe.game.Board;
 
 public class CheatingPlayer extends Player {
 
-	public CheatingPlayer(Character mark) {
+	public CheatingPlayer(char mark) {
 		super(mark);
 	}
 

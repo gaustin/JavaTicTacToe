@@ -1,10 +1,11 @@
-package ticTacToe.Tests;
+package tictactoe.tests;
 
-import ticTacToe.Game.Game;
-import ticTacToe.Mocks.MockBoard;
-import ticTacToe.Mocks.MockPlayer;
-import ticTacToe.Mocks.MockReferee;
-import ticTacToe.Mocks.MockScorer;
+import tictactoe.game.Game;
+import tictactoe.mocks.MockBoard;
+import tictactoe.mocks.MockMessenger;
+import tictactoe.mocks.MockPlayer;
+import tictactoe.mocks.MockReferee;
+import tictactoe.mocks.MockScorer;
 import junit.framework.TestCase;
 
 
@@ -15,14 +16,16 @@ public class TestGame extends TestCase {
 	private MockBoard board;
 	private MockReferee referee;
 	private MockScorer scorer;
+	private MockMessenger messenger;
 	
 	public void setUp() {
 		board = new MockBoard(9);
+		messenger = new MockMessenger();
 		xPlayer = new MockPlayer('X');
 		oPlayer = new MockPlayer('O');
 		referee = new MockReferee();
 		scorer = new MockScorer(board);
-		game = new Game(board, referee, scorer, xPlayer, oPlayer);
+		game = new Game(board, messenger, referee, scorer, xPlayer, oPlayer);
 	}
 	
 	public void testGamePlay() {		

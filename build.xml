@@ -56,7 +56,7 @@
     </target>
 
     <target name="play" depends="clean,compile">
-        <java classname="ticTacToe.UI.TicTacToe" fork="yes">
+        <java classname="tictactoe.ui.TicTacToe" fork="yes">
             <classpath refid="classpath" />
         </java>
     </target>

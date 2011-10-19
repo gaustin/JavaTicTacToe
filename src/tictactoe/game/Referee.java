@@ -1,12 +1,10 @@
-package ticTacToe.Game;
+package tictactoe.game;
 
 public class Referee {
-
 	public boolean validateMove(Board board, char mark, int position) {
-		if (board.isTaken(position))
+		if (position < 0 || position >= board.getSpaces().length || board.isTaken(position))
 			return false;
 		else
 			return true;
 	}
-
 }

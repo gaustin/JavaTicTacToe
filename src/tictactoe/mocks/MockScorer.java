@@ -1,7 +1,7 @@
-package ticTacToe.Mocks;
+package tictactoe.mocks;
 
-import ticTacToe.Game.Board;
-import ticTacToe.Game.TicTacToeScorer;
+import tictactoe.game.Board;
+import tictactoe.game.TicTacToeScorer;
 
 public class MockScorer extends TicTacToeScorer {
 

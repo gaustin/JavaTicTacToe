@@ -1,12 +1,12 @@
-package ticTacToe.Players;
+package tictactoe.players;
 
 import java.util.*;
 
-import ticTacToe.Game.Board;
+import tictactoe.game.Board;
 
 public class NaivePlayer extends Player {
 
-	public NaivePlayer(Character mark) {
+	public NaivePlayer(char mark) {
 		super(mark);
 	}
 

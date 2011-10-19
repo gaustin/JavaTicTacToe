@@ -1,16 +1,16 @@
-package ticTacToe.Tests;
+package tictactoe.tests;
 
 import junit.framework.TestCase;
-import ticTacToe.Game.Board;
-import ticTacToe.Players.NaivePlayer;
+import tictactoe.game.Board;
+import tictactoe.players.NaivePlayer;
 
 public class TestPlayer extends TestCase {
 	private NaivePlayer player;
 	private Board board;
 	
 	public void setUp() {
-		player = new NaivePlayer('O');
 		board = new Board(3, 3);
+		player = new NaivePlayer('O');
 	}
 
 	public void testPlayerHasMark() {

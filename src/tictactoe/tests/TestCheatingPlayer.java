@@ -1,9 +1,9 @@
-package ticTacToe.Tests;
+package tictactoe.tests;
 
 import junit.framework.TestCase;
-import ticTacToe.Game.Board;
-import ticTacToe.Players.CheatingPlayer;
-import ticTacToe.Players.Player;
+import tictactoe.game.Board;
+import tictactoe.players.CheatingPlayer;
+import tictactoe.players.Player;
 
 
 public class TestCheatingPlayer extends TestCase {
@@ -16,7 +16,7 @@ public class TestCheatingPlayer extends TestCase {
 	}
 	
 	public void testPlayerCannotModifyBoard() {
-		Board boardCopy = board.clone();
+		Board boardCopy = board.copy();
 		int choice = player.getChoice(boardCopy);
 		
 		assertTrue(board.markAt(choice) == 0);

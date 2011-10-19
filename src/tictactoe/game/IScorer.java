@@ -1,4 +1,4 @@
-package ticTacToe.Game;
+package tictactoe.game;
 
 public interface IScorer {
 

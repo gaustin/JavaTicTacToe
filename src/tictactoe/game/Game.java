@@ -1,6 +1,6 @@
-package ticTacToe.Game;
+package tictactoe.game;
 
-import ticTacToe.Players.Player;
+import tictactoe.players.Player;
 
 public class Game {
 	private Board board;
@@ -8,10 +8,12 @@ public class Game {
 	private IScorer scorer;
 	private Player xPlayer;
 	private Player oPlayer;
+	private IMessenger messenger;
 	
-	public Game(Board board, Referee referee, IScorer scorer,
+	public Game(Board board, IMessenger messenger, Referee referee, IScorer scorer,
 			Player xPlayer, Player oPlayer) {
 		this.board = board;
+		this.messenger = messenger;
 		this.referee = referee;
 		this.scorer = scorer;
 		this.xPlayer = xPlayer;
@@ -24,10 +26,16 @@ public class Game {
 		
 		while (!scorer.isGameOver()) {
 			Player player = players[turn % 2];
-			Board boardCopy = board.clone();
+			Board boardCopy = board.copy();
+			
+			messenger.displayBoard(board);
+			messenger.promptPlayerForMove(player);
 			int choice = player.getChoice(boardCopy);
 			
 			while (!referee.validateMove(board, player.getMark(), choice)) {
+				messenger.informPlayerOfInvalidChoice();
+				messenger.displayBoard(board);
+				messenger.promptPlayerForMove(player);
 				choice = player.getChoice(boardCopy);
 			}
 			

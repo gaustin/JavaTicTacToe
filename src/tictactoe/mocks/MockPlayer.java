@@ -1,12 +1,12 @@
-package ticTacToe.Mocks;
+package tictactoe.mocks;
 
-import ticTacToe.Game.Board;
-import ticTacToe.Players.NaivePlayer;
+import tictactoe.game.Board;
+import tictactoe.players.NaivePlayer;
 
 public class MockPlayer extends NaivePlayer {
 	public boolean getChoiceCalled = false;
 	
-	public MockPlayer(Character mark) {
+	public MockPlayer(char mark) {
 		super(mark);
 	}
 

@@ -1,10 +1,10 @@
-package ticTacToe.Tests;
+package tictactoe.tests;
 
 import java.util.List;
 
 import junit.framework.TestCase;
-import ticTacToe.Game.Board;
-import ticTacToe.Game.TicTacToeScorer;
+import tictactoe.game.Board;
+import tictactoe.game.TicTacToeScorer;
 
 public class TestScorer extends TestCase{
 
@@ -29,7 +29,7 @@ public class TestScorer extends TestCase{
 	
 	public void testGameOverByWinner() {
 		for (int i : winningConfigurations[0]) {
-			board.markPosition((Character)'X', i);
+			board.markPosition('X', i);
 			if (i < 2)
 				assertFalse(scorer.isGameOver());
 			else
@@ -51,7 +51,7 @@ public class TestScorer extends TestCase{
 	public void testGameOverBoardFilled() {
 		List<Integer> spaces = board.emptySpaces();
 		for (int i : spaces)
-			board.markPosition(new Character((char)('A' + i)), i);
+			board.markPosition((char)('A' + i), i);
 		assertTrue(scorer.isGameOver());
 	}
 	

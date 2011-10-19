@@ -1,4 +1,4 @@
-package ticTacToe.Game;
+package tictactoe.game;
 
 
 public class TicTacToeScorer implements IScorer {
@@ -53,8 +53,8 @@ public class TicTacToeScorer implements IScorer {
 	}
 	
 	private boolean checkConfigurationForWin(int[] configuration) {
-		Character mark = board.markAt(configuration[0]);
+		char mark = board.markAt(configuration[0]);
 		
-		return mark.equals(board.markAt(configuration[0])) && mark.equals(board.markAt(configuration[1])) && mark.equals(board.markAt(configuration[2]));
+		return mark == board.markAt(configuration[0]) && mark == board.markAt(configuration[1]) && mark == board.markAt(configuration[2]);
 	}
 }

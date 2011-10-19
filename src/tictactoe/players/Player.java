@@ -1,6 +1,6 @@
-package ticTacToe.Players;
+package tictactoe.players;
 
-import ticTacToe.Game.Board;
+import tictactoe.game.Board;
 
 public abstract class Player {
 
@@ -8,10 +8,11 @@ public abstract class Player {
 		m_mark = mark;
 	}
 	
-	public char m_mark;
+	private char m_mark;
 	public char getMark() {
 		return m_mark;
 	}
 	
 	public abstract int getChoice(Board board);
+
 }

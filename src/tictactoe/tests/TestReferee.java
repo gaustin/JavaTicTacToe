@@ -1,8 +1,8 @@
-package ticTacToe.Tests;
+package tictactoe.tests;
 
 import junit.framework.TestCase;
-import ticTacToe.Game.Board;
-import ticTacToe.Game.Referee;
+import tictactoe.game.Board;
+import tictactoe.game.Referee;
 
 public class TestReferee extends TestCase {
 	private Referee ref;

@@ -1,8 +1,8 @@
-package ticTacToe.Tests;
+package tictactoe.tests;
 
 import java.util.*;
 
-import ticTacToe.Game.Board;
+import tictactoe.game.Board;
 import junit.framework.TestCase;
 
 public class TestBaseBoard extends TestCase {
@@ -67,7 +67,7 @@ public class TestBaseBoard extends TestCase {
             "-----------\n" +
             " O | O | X \n" +
             "-----------\n" +
-            " - | O | - \n";
+            " 6 | O | 8 \n";
     	
     	board.markPosition('X', 0);
     	board.markPosition('O', 1);

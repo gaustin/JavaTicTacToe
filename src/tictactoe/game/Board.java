@@ -1,4 +1,4 @@
-package ticTacToe.Game;
+package tictactoe.game;
 
 import java.util.*;
 
@@ -56,7 +56,7 @@ public class Board {
 		return (char)cells[position];
 	}
 	
-	public Board clone() {
+	public Board copy() {
 		Board clonedBoard = new Board(cells.length);
 		for (int i = 0; i < cells.length; i++) {
 			clonedBoard.markPosition(cells[i], i);
@@ -71,7 +71,8 @@ public class Board {
 	public char markOrDashAt(int position) {
 		char mark = cells[position];
 		
-		return mark == 0 ? '-' : mark;
+		// UGLY UGLY UGLY UGLY HACK
+		return mark == 0 ? (char)(48 + position) : mark;
 	}
 	
     public String toString() {

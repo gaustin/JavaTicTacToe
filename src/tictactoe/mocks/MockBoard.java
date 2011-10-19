@@ -1,6 +1,6 @@
-package ticTacToe.Mocks;
+package tictactoe.mocks;
 
-import ticTacToe.Game.Board;
+import tictactoe.game.Board;
 
 public class MockBoard extends Board {
 

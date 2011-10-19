@@ -1,7 +1,7 @@
-package ticTacToe.Mocks;
+package tictactoe.mocks;
 
-import ticTacToe.Game.Board;
-import ticTacToe.Game.Referee;
+import tictactoe.game.Board;
+import tictactoe.game.Referee;
 
 public class MockReferee extends Referee {
 
