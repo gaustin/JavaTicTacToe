@@ -24,7 +24,7 @@ public class TicTacToe {
 		PlayerFactory factory = new PlayerFactory();
 		
 		Player oPlayer = factory.create('O', getPlayerType(reader, 'O'), messenger); 
-		Player xPlayer = factory.create('X', getPlayerType(reader, 'X'), messenger); ;
+		Player xPlayer = factory.create('X', getPlayerType(reader, 'X'), messenger);
 		
 		String lastInput = "";
 		
