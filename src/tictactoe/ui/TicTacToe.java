@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import tictactoe.game.*;
-import tictactoe.players.HumanPlayer;
-import tictactoe.players.NaivePlayer;
 import tictactoe.players.Player;
 import tictactoe.players.PlayerFactory;
 import tictactoe.players.PlayerTypes;
