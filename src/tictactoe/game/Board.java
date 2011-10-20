@@ -70,9 +70,9 @@ public class Board {
 	
 	public char markOrDashAt(int position) {
 		char mark = cells[position];
-		
-		// UGLY UGLY UGLY UGLY HACK
-		return mark == 0 ? (char)(48 + position) : mark;
+		String pos = String.valueOf(position);
+
+		return mark == 0 ? pos.toCharArray()[0] : mark;
 	}
 	
     public String toString() {
