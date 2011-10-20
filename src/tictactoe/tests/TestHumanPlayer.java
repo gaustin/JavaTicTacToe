@@ -1,6 +1,7 @@
 package tictactoe.tests;
 
 import tictactoe.game.Board;
+import tictactoe.game.IReferee;
 import tictactoe.game.Referee;
 import tictactoe.mocks.MockMessenger;
 import tictactoe.players.HumanPlayer;
@@ -11,7 +12,7 @@ public class TestHumanPlayer extends TestCase {
 	public void testGetChoice() {
 		Board board = new Board(3, 3);
 		MockMessenger messenger = new MockMessenger();
-		Referee referee = new Referee();
+		IReferee referee = new Referee();
 		HumanPlayer player = new HumanPlayer('X', messenger);
 
 		int choice = player.getChoice(board);

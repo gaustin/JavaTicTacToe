@@ -17,12 +17,12 @@ public class TicTacToe {
 		Board board = new Board(9);
 		IMessenger messenger = new ConsoleMessenger();
 		IScorer scorer = new TicTacToeScorer(board);
-		Referee referee = new Referee();
+		IReferee referee = new Referee();
 
 		PlayerFactory factory = new PlayerFactory();
 		
-		Player oPlayer = factory.create('O', getPlayerType(reader, 'O'), messenger); 
-		Player xPlayer = factory.create('X', getPlayerType(reader, 'X'), messenger);
+		Player oPlayer = factory.create('O', messenger.getPlayerType('O'), messenger); 
+		Player xPlayer = factory.create('X', messenger.getPlayerType('X'), messenger);
 		
 		String lastInput = "";
 		
@@ -41,18 +41,5 @@ public class TicTacToe {
 			lastInput = reader.readLine();
 			game.reset();
 		}
-	}
-
-	private static PlayerTypes getPlayerType(BufferedReader reader, char mark) throws IOException {
-		PlayerTypes playerType = null;
-		
-		System.out.println("Enter a player type for the " + mark + " player (1) for Human, (2) for Computer: ");
-		String input = reader.readLine();
-		if ("1".equals(input)) {
-			playerType = PlayerTypes.Human;
-		} else if ("2".equals(input)) {
-			playerType = PlayerTypes.NaiveComputer;
-		}
-		return playerType;
 	}
 }

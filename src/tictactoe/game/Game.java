@@ -4,13 +4,13 @@ import tictactoe.players.Player;
 
 public class Game {
 	private Board board;
-	private Referee referee;
+	private IReferee referee;
 	private IScorer scorer;
 	private Player xPlayer;
 	private Player oPlayer;
 	private IMessenger messenger;
 	
-	public Game(Board board, IMessenger messenger, Referee referee, IScorer scorer,
+	public Game(Board board, IMessenger messenger, IReferee referee, IScorer scorer,
 			Player xPlayer, Player oPlayer) {
 		this.board = board;
 		this.messenger = messenger;

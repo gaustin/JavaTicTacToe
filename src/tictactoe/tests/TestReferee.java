@@ -2,10 +2,11 @@ package tictactoe.tests;
 
 import junit.framework.TestCase;
 import tictactoe.game.Board;
+import tictactoe.game.IReferee;
 import tictactoe.game.Referee;
 
 public class TestReferee extends TestCase {
-	private Referee ref;
+	private IReferee ref;
 	private Board board;
 	
 	public void setUp() {

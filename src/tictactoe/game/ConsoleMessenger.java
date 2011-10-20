@@ -1,9 +1,13 @@
 package tictactoe.game;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import tictactoe.players.Player;
+import tictactoe.players.PlayerTypes;
 
 public class ConsoleMessenger implements IMessenger {
 
@@ -48,5 +52,17 @@ public class ConsoleMessenger implements IMessenger {
     	return boardRep;
 	}
 	
-
+	public PlayerTypes getPlayerType(char mark) throws IOException {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		PlayerTypes playerType = null;
+		
+		System.out.println("Enter a player type for the " + mark + " player (1) for Human, (2) for Computer: ");
+		String input = reader.readLine();
+		if ("1".equals(input)) {
+			playerType = PlayerTypes.Human;
+		} else if ("2".equals(input)) {
+			playerType = PlayerTypes.NaiveComputer;
+		}
+		return playerType;
+	}
 }
