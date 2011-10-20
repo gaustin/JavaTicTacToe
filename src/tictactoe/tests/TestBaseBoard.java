@@ -61,25 +61,6 @@ public class TestBaseBoard extends TestCase {
 		assertTrue(board.full());
 	}
 	
-	public void testStringRepresentation() {
-    	String boardRep =
-    		" X | O | X \n" +
-            "-----------\n" +
-            " O | O | X \n" +
-            "-----------\n" +
-            " 6 | O | 8 \n";
-    	
-    	board.markPosition('X', 0);
-    	board.markPosition('O', 1);
-    	board.markPosition('X', 2);
-    	board.markPosition('O', 3);
-    	board.markPosition('O', 4);
-    	board.markPosition('X', 5);
-    	board.markPosition('O', 7);
-    	
-    	assertEquals(boardRep, board.toString());
-	}
-	
 	private List<Integer> list(int... ints) {
 		ArrayList<Integer> integers = new ArrayList<Integer>();
 		

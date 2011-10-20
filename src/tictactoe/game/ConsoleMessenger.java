@@ -37,4 +37,16 @@ public class ConsoleMessenger implements IMessenger {
 		System.out.println("Invalid move");
 	}
 
+	@Override
+	public String boardToString(Board board) {
+    	String boardRep =
+    		" " + board.markOrDashAt(0) + " | " + board.markOrDashAt(1) + " | " + board.markOrDashAt(2) + " \n" +
+            "-----------\n" +
+            " " + board.markOrDashAt(3) + " | " + board.markOrDashAt(4) + " | " + board.markOrDashAt(5) + " \n" +
+            "-----------\n" +
+            " " + board.markOrDashAt(6) + " | " + board.markOrDashAt(7) + " | " + board.markOrDashAt(8) + " \n";
+    	return boardRep;
+	}
+	
+
 }

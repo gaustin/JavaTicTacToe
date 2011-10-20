@@ -7,4 +7,5 @@ public interface IMessenger {
 	public void promptPlayerForMove(Player player);
 	public void displayBoard(Board board);
 	public void informPlayerOfInvalidChoice();
+	public String boardToString(Board board);
 }

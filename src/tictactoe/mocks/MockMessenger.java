@@ -10,6 +10,7 @@ public class MockMessenger implements IMessenger {
 	public boolean promptPlayerForMoveCalled = false;
 	public boolean displayBoardCalled = false;
 	public boolean invalidChoiceCalled = false;
+	public boolean boardToStringCalled = false;
 	
 	@Override
 	public int getMoveFromPlayer(Player player) {
@@ -30,6 +31,12 @@ public class MockMessenger implements IMessenger {
 	@Override
 	public void informPlayerOfInvalidChoice() {
 		invalidChoiceCalled = true;
+	}
+
+	@Override
+	public String boardToString(Board board) {
+		boardToStringCalled = true;
+		return "";
 	}
 	
 }

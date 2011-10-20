@@ -74,14 +74,4 @@ public class Board {
 
 		return mark == 0 ? pos.toCharArray()[0] : mark;
 	}
-	
-    public String toString() {
-    	String board =
-    		" " + markOrDashAt(0) + " | " + markOrDashAt(1) + " | " + markOrDashAt(2) + " \n" +
-            "-----------\n" +
-            " " + markOrDashAt(3) + " | " + markOrDashAt(4) + " | " + markOrDashAt(5) + " \n" +
-            "-----------\n" +
-            " " + markOrDashAt(6) + " | " + markOrDashAt(7) + " | " + markOrDashAt(8) + " \n";
-    	return board;
-    }
 }
