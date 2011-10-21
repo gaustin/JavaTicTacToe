@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 import tictactoe.game.*;
 import tictactoe.players.Player;
 import tictactoe.players.PlayerFactory;
-import tictactoe.players.PlayerTypes;
 
 public class TicTacToe {
 
