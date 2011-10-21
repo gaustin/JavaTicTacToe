@@ -30,7 +30,7 @@ public class TicTacToe {
 			
 			game.play();
 			
-			System.out.println(board.toString());
+			messenger.displayBoard(board);
 			if (scorer.isDraw())
 				System.out.println("It was a draw!");
 			else

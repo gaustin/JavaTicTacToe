@@ -33,7 +33,7 @@ public class ConsoleMessenger implements IMessenger {
 
 	@Override
 	public void displayBoard(Board board) {
-		System.out.println(board.toString());
+		System.out.println(boardToString(board));
 	}
 
 	@Override
