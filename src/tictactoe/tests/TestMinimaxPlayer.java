@@ -53,9 +53,6 @@ public class TestMinimaxPlayer extends TestCase {
 	}
 	
 	public void testHorizontalWinBlock() {
-		/*
-		 * Curious that 0 = 'O', 3 = 'X', 1 = 'O' causes the xPlayer to choose 2 correctly.
-		 */
 		board.markPosition('O', 3);
 		board.markPosition('X', 0);
 		board.markPosition('O', 4);
