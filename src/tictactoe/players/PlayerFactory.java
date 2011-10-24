@@ -14,6 +14,9 @@ public class PlayerFactory {
 		case NaiveComputer:
 			player = new NaivePlayer(mark);
 			break;
+		case MinimaxPlayer:
+			player = new MinimaxPlayer(mark);
+			break;
 		default:
 			player = new NaivePlayer(mark); // Worst case, they can watch crappy computers play.
 			break;

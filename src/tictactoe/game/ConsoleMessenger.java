@@ -49,6 +49,7 @@ public class ConsoleMessenger implements IMessenger {
             " " + board.markOrDashAt(3) + " | " + board.markOrDashAt(4) + " | " + board.markOrDashAt(5) + " \n" +
             "-----------\n" +
             " " + board.markOrDashAt(6) + " | " + board.markOrDashAt(7) + " | " + board.markOrDashAt(8) + " \n";
+    	
     	return boardRep;
 	}
 	
@@ -61,7 +62,7 @@ public class ConsoleMessenger implements IMessenger {
 		if ("1".equals(input)) {
 			playerType = PlayerTypes.Human;
 		} else if ("2".equals(input)) {
-			playerType = PlayerTypes.NaiveComputer;
+			playerType = PlayerTypes.MinimaxPlayer;
 		}
 		return playerType;
 	}
