@@ -13,6 +13,16 @@ public abstract class Player {
 		return m_mark;
 	}
 	
+	protected Player opponent = null;
+	
+	public Player getOpponent() {
+		return opponent;
+	}
+	
+	public void setOpponent(Player opponent) {
+		this.opponent = opponent;
+	}
+	
 	public abstract int getChoice(Board board);
 
 }

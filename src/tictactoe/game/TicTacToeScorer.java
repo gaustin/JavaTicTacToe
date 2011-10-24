@@ -55,6 +55,6 @@ public class TicTacToeScorer implements IScorer {
 	private boolean checkConfigurationForWin(int[] configuration) {
 		char mark = board.markAt(configuration[0]);
 		
-		return mark == board.markAt(configuration[0]) && mark == board.markAt(configuration[1]) && mark == board.markAt(configuration[2]);
+		return mark != '\0' && mark == board.markAt(configuration[0]) && mark == board.markAt(configuration[1]) && mark == board.markAt(configuration[2]);
 	}
 }
