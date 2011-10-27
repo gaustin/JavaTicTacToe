@@ -1,15 +1,16 @@
-package tictactoe.players;
+package tictactoe.players.strategies;
 
 import java.util.List;
 
 import tictactoe.game.Board;
 import tictactoe.game.TicTacToeScorer;
+import tictactoe.players.Player;
 
-public class Minimax {
+public class MinimaxStrategy implements IPlayerStrategy {
 
     private static int INFINITY = Integer.MAX_VALUE;
 
-    public static int startMinimax(Board board, Player player) {
+    public int calculateBestMove(Board board, Player player) {
         TicTacToeScorer scorer = new TicTacToeScorer(board);
 
         List<Integer> potentialMoves = board.emptySpaces();
@@ -33,7 +34,7 @@ public class Minimax {
         return bestMove;
     }
 
-    private static int minimax(Board board, TicTacToeScorer scorer,
+    private int minimax(Board board, TicTacToeScorer scorer,
             Player player, int depth) {
         Player opposingPlayer = player.getOpponent();
         if (scorer.isGameOver() || depth <= 0) {
