@@ -9,15 +9,15 @@ import junit.framework.TestCase;
 
 public class TestHumanPlayer extends TestCase {
 
-	public void testGetChoice() {
-		Board board = new Board(3, 3);
-		MockMessenger messenger = new MockMessenger();
-		IReferee referee = new Referee();
-		HumanPlayer player = new HumanPlayer('X', messenger);
+    public void testGetChoice() {
+        Board board = new Board(3, 3);
+        MockMessenger messenger = new MockMessenger();
+        IReferee referee = new Referee();
+        HumanPlayer player = new HumanPlayer('X', messenger);
 
-		int choice = player.getChoice(board);
-		assertTrue(referee.validateMove(board, player.getMark(), choice));
-		assertEquals(4, choice);
-	}
-	
+        int choice = player.getChoice(board);
+        assertTrue(referee.validateMove(board, player.getMark(), choice));
+        assertEquals(4, choice);
+    }
+    
 }

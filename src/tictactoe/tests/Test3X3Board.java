@@ -5,58 +5,58 @@ import junit.framework.TestCase;
 
 public class Test3X3Board extends TestCase {
 
-	Board board;
-	int boardSize = 9;
-	
-	public void setUp() {
-		board = new Board(9);
-	}
-	
-	public void testMarkAt() {
-		board.markPosition('O', 4);
-		assertEquals('O', board.markAt(4));
-	}
-	
-	public void testGetSpaces() {
-		board.markPosition('O', 4);
-		board.markPosition('X', 0);
-		
-		for (int i = 0; i < boardSize; i++) {
-			if (i == 0)
-				assertEquals('X', board.markAt(i));
-			else if (i == 4)
-				assertEquals('O', board.markAt(i));
-			else
-				assertEquals(0, board.markAt(i));
-		}
-	}
-	
-	public void testEmptySpaces() {
-		assertEquals(boardSize, board.emptySpaces().size());
-	}
-	
-	public void testIsTaken() {
-		for (int i = 0; i < boardSize; i++)
-			assertEquals(false, board.isTaken(i));
-	}
-	
-	public void testSomePositionsAreEmpty() {
-		board.markPosition('O', 4);
-		board.markPosition('X', 0);
-		
-		assertTrue(board.emptySpaces().size() > 0);
-	}
+    Board board;
+    int boardSize = 9;
+    
+    public void setUp() {
+        board = new Board(9);
+    }
+    
+    public void testMarkAt() {
+        board.markPosition('O', 4);
+        assertEquals('O', board.markAt(4));
+    }
+    
+    public void testGetSpaces() {
+        board.markPosition('O', 4);
+        board.markPosition('X', 0);
+        
+        for (int i = 0; i < boardSize; i++) {
+            if (i == 0)
+                assertEquals('X', board.markAt(i));
+            else if (i == 4)
+                assertEquals('O', board.markAt(i));
+            else
+                assertEquals(0, board.markAt(i));
+        }
+    }
+    
+    public void testEmptySpaces() {
+        assertEquals(boardSize, board.emptySpaces().size());
+    }
+    
+    public void testIsTaken() {
+        for (int i = 0; i < boardSize; i++)
+            assertEquals(false, board.isTaken(i));
+    }
+    
+    public void testSomePositionsAreEmpty() {
+        board.markPosition('O', 4);
+        board.markPosition('X', 0);
+        
+        assertTrue(board.emptySpaces().size() > 0);
+    }
 
-	public void testMakeMark() {
-		board.markPosition('O', 4);
-		assertEquals(true, board.isTaken(4));
-	}
-	
-	public void testFull() {
-		int count = board.emptySpaces().size();
-		for (int i = 0; i < count; i++) {
-			board.markPosition('O', i);
-		}
-		assertTrue(board.full());
-	}
+    public void testMakeMark() {
+        board.markPosition('O', 4);
+        assertEquals(true, board.isTaken(4));
+    }
+    
+    public void testFull() {
+        int count = board.emptySpaces().size();
+        for (int i = 0; i < count; i++) {
+            board.markPosition('O', i);
+        }
+        assertTrue(board.full());
+    }
 }
