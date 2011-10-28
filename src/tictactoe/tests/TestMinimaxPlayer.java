@@ -1,18 +1,19 @@
 package tictactoe.tests;
 
 import tictactoe.game.Board;
-import tictactoe.players.MinimaxPlayer;
+import tictactoe.players.ComputerPlayer;
+import tictactoe.players.strategies.MinimaxStrategy;
 import junit.framework.TestCase;
 
 public class TestMinimaxPlayer extends TestCase {
     Board board;
-    MinimaxPlayer xPlayer;
-    MinimaxPlayer oPlayer;
+    ComputerPlayer xPlayer;
+    ComputerPlayer oPlayer;
     
     public void setUp() {
         board = new Board(9);
-        xPlayer = new MinimaxPlayer('X');
-        oPlayer = new MinimaxPlayer('O');
+        xPlayer = new ComputerPlayer('X', new MinimaxStrategy());
+        oPlayer = new ComputerPlayer('O', new MinimaxStrategy());
         xPlayer.setOpponent(oPlayer);
         oPlayer.setOpponent(xPlayer);
     }

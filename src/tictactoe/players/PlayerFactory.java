@@ -1,6 +1,8 @@
 package tictactoe.players;
 
 import tictactoe.game.IMessenger;
+import tictactoe.players.strategies.MinimaxStrategy;
+import tictactoe.players.strategies.RandomStrategy;
 
 public class PlayerFactory {
 
@@ -12,13 +14,13 @@ public class PlayerFactory {
             player = new HumanPlayer(mark, messenger);
             break;
         case NaiveComputer:
-            player = new NaivePlayer(mark);
+            player = new ComputerPlayer(mark, new RandomStrategy());
             break;
         case MinimaxPlayer:
-            player = new MinimaxPlayer(mark);
+            player = new ComputerPlayer(mark, new MinimaxStrategy());
             break;
         default:
-            player = new NaivePlayer(mark); // Worst case, they can watch crappy computers play.
+            player = new ComputerPlayer(mark, new RandomStrategy()); // Worst case, they can watch crappy computers play.
             break;
         }
         return player;

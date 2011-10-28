@@ -2,14 +2,13 @@ package tictactoe.players;
 
 import tictactoe.game.Board;
 import tictactoe.players.strategies.IPlayerStrategy;
-import tictactoe.players.strategies.MinimaxStrategy;
 
-public class MinimaxPlayer extends Player {
+public class ComputerPlayer extends Player {
     private IPlayerStrategy playerStrategy;
     
-    public MinimaxPlayer(char mark) {
+    public ComputerPlayer(char mark, IPlayerStrategy playerStrategy) {
         super(mark);
-        playerStrategy = new MinimaxStrategy();
+        this.playerStrategy = playerStrategy;
     }
     
     @Override

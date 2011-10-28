@@ -1,13 +1,14 @@
 package tictactoe.mocks;
 
 import tictactoe.game.Board;
-import tictactoe.players.NaivePlayer;
+import tictactoe.players.ComputerPlayer;
+import tictactoe.players.strategies.RandomStrategy;
 
-public class MockPlayer extends NaivePlayer {
+public class MockPlayer extends ComputerPlayer {
     public boolean getChoiceCalled = false;
     
     public MockPlayer(char mark) {
-        super(mark);
+        super(mark, new RandomStrategy());
     }
 
     @Override

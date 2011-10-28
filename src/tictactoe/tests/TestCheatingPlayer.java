@@ -2,8 +2,9 @@ package tictactoe.tests;
 
 import junit.framework.TestCase;
 import tictactoe.game.Board;
-import tictactoe.players.CheatingPlayer;
+import tictactoe.players.ComputerPlayer;
 import tictactoe.players.Player;
+import tictactoe.players.strategies.CheatingStrategy;
 
 
 public class TestCheatingPlayer extends TestCase {
@@ -12,7 +13,7 @@ public class TestCheatingPlayer extends TestCase {
     
     public void setUp() {
         board = new Board(3, 3);
-        player = new CheatingPlayer('O');
+        player = new ComputerPlayer('O', new CheatingStrategy());
     }
     
     public void testPlayerCannotModifyBoard() {
