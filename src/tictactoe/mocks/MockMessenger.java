@@ -15,6 +15,8 @@ public class MockMessenger implements IMessenger {
     public boolean invalidChoiceCalled = false;
     public boolean boardToStringCalled = false;
     public boolean getPlayerTypeCalled = false;
+	public boolean doPlayAgainCalled = false;
+	public boolean displayResultsCalled = false;
     
     @Override
     public int getMoveFromPlayer(Player player) {
@@ -28,7 +30,7 @@ public class MockMessenger implements IMessenger {
     }
 
     @Override
-    public void displayBoard(Board board) {
+    public void updateBoardDisplay() {
         displayBoardCalled = true;
     }
 
@@ -37,16 +39,25 @@ public class MockMessenger implements IMessenger {
         invalidChoiceCalled = true;
     }
 
-    @Override
     public String boardToString(Board board) {
         boardToStringCalled = true;
         return "";
     }
 
-    @Override
     public PlayerTypes getPlayerType(char mark) throws IOException {
         getPlayerTypeCalled  = true;
         return PlayerTypes.Human;
     }
+
+	@Override
+	public boolean doPlayAgain() {
+		doPlayAgainCalled = true;
+		return true;
+	}
+
+	@Override
+	public void displayResults() {
+		displayResultsCalled = true;		
+	}
     
 }

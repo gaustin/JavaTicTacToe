@@ -22,4 +22,8 @@ public class TestPlayerFactory extends TestCase {
         Player oPlayer = factory.create('O', PlayerTypes.NaiveComputer, messenger);
         assertNotNull(oPlayer);
     }
+    
+    public void testGetMinimax() {
+    	assertEquals(PlayerTypes.MinimaxComputer, PlayerTypes.valueOf("MinimaxComputer"));
+    }
 }

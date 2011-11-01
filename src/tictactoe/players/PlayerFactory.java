@@ -16,7 +16,7 @@ public class PlayerFactory {
         case NaiveComputer:
             player = new ComputerPlayer(mark, new RandomStrategy());
             break;
-        case MinimaxPlayer:
+        case MinimaxComputer:
             player = new ComputerPlayer(mark, new MinimaxStrategy());
             break;
         default:
@@ -25,5 +25,4 @@ public class PlayerFactory {
         }
         return player;
     }
-
 }

@@ -28,13 +28,13 @@ public class Game {
             Player player = players[turn % 2];
             Board boardCopy = board.copy();
             
-            messenger.displayBoard(board);
+            messenger.updateBoardDisplay();
             messenger.promptPlayerForMove(player);
             int choice = player.getChoice(boardCopy);
             
             while (!referee.validateMove(board, player.getMark(), choice)) {
                 messenger.informPlayerOfInvalidChoice();
-                messenger.displayBoard(board);
+                messenger.updateBoardDisplay();
                 messenger.promptPlayerForMove(player);
                 choice = player.getChoice(boardCopy);
             }

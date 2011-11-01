@@ -3,17 +3,17 @@ package tictactoe.tests;
 import junit.framework.TestCase;
 import tictactoe.game.Board;
 import tictactoe.game.ConsoleMessenger;
-import tictactoe.game.IMessenger;
+import tictactoe.game.TicTacToeScorer;
 import tictactoe.players.HumanPlayer;
 
 public class TestConsoleMessenger extends TestCase {
-    IMessenger messenger;
+    ConsoleMessenger messenger;
     HumanPlayer player;
     Board board;
     
     public void setUp() {
         board = new Board(9);
-        messenger = new ConsoleMessenger();
+        messenger = new ConsoleMessenger(board, new TicTacToeScorer(board));
         player = new HumanPlayer('X', messenger);
     }
     

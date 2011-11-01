@@ -9,8 +9,19 @@ import java.util.Scanner;
 import tictactoe.players.Player;
 import tictactoe.players.PlayerTypes;
 
-public class ConsoleMessenger implements IMessenger {
+// TODO: Add some more tests here, if possible. Test SwingMessenger, too.
 
+public class ConsoleMessenger implements IMessenger {
+	BufferedReader reader;
+	Board board;
+	IScorer scorer;
+	
+	public ConsoleMessenger(Board board, IScorer scorer) {
+        reader = new BufferedReader(new InputStreamReader(System.in));	
+        this.board = board;
+        this.scorer = scorer;
+	}
+	
     @Override
     public int getMoveFromPlayer(Player player) {
         Scanner scanner = new Scanner(System.in);
@@ -32,7 +43,7 @@ public class ConsoleMessenger implements IMessenger {
     }
 
     @Override
-    public void displayBoard(Board board) {
+    public void updateBoardDisplay() {
         System.out.println(boardToString(board));
     }
 
@@ -41,7 +52,6 @@ public class ConsoleMessenger implements IMessenger {
         System.out.println("Invalid move");
     }
 
-    @Override
     public String boardToString(Board board) {
         String boardRep =
             " " + board.markOrDashAt(0) + " | " + board.markOrDashAt(1) + " | " + board.markOrDashAt(2) + " \n" +
@@ -62,8 +72,30 @@ public class ConsoleMessenger implements IMessenger {
         if ("1".equals(input)) {
             playerType = PlayerTypes.Human;
         } else if ("2".equals(input)) {
-            playerType = PlayerTypes.MinimaxPlayer;
+            playerType = PlayerTypes.MinimaxComputer;
         }
         return playerType;
     }
+
+	@Override
+	public boolean doPlayAgain() {
+        System.out.println("Press any key to play again ('quit' to exit):");
+        try {
+			String input = reader.readLine();
+			if (input.equals("quit"))
+				return false;
+		} catch (IOException e) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public void displayResults() {
+        updateBoardDisplay();
+        if (scorer.isDraw())
+            System.out.println("It was a draw!");
+        else
+            System.out.println(scorer.getWinner() + " won!");
+	}
 }
