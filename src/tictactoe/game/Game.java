@@ -43,6 +43,7 @@ public class Game {
             
             turn++;
         }
+        messenger.updateBoardDisplay();
     }
 
     public void reset() {

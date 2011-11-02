@@ -1,5 +1,6 @@
 package tictactoe.game;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -10,6 +11,7 @@ import java.io.IOException;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -120,6 +122,21 @@ public class SwingMessenger extends JFrame implements IMessenger {
     public void updateBoardDisplay() {
         System.out.println("updateBoardDisplay");
         System.out.println(board.getSpaces());
+        char mark;
+        JButton square;
+
+        for(Component component : boardPanel.getComponents())
+        {
+            if(component instanceof JButton)
+            {
+                square = (JButton)component;
+                int position = Integer.parseInt(square.getName());
+                mark = board.markAt(position);
+                if(mark != 0) {
+                    square.setText("" + mark);
+                }
+            }
+        }
     }
     
     public PlayerTypes getPlayerType(char mark) {
