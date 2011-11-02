@@ -83,7 +83,7 @@ public class SwingMessenger extends JFrame implements IMessenger {
         for (int i = 0; i <= 8; i++) {
             JButton button = new JButton("-");
             button.setName("" + i);
-            getBoardPanel().add(button);
+            boardPanel.add(button);
         }
         
         add(boardPanel);
@@ -120,20 +120,18 @@ public class SwingMessenger extends JFrame implements IMessenger {
 
     @Override
     public void updateBoardDisplay() {
-        System.out.println("updateBoardDisplay");
-        System.out.println(board.getSpaces());
+        JButton button;
         char mark;
-        JButton square;
 
         for(Component component : boardPanel.getComponents())
         {
             if(component instanceof JButton)
             {
-                square = (JButton)component;
-                int position = Integer.parseInt(square.getName());
+            	button = (JButton)component;
+                int position = Integer.parseInt(button.getName());
                 mark = board.markAt(position);
                 if(mark != 0) {
-                    square.setText("" + mark);
+                	button.setText("" + mark);
                 }
             }
         }
