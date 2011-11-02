@@ -21,14 +21,18 @@ import tictactoe.players.Player;
 import tictactoe.players.PlayerFactory;
 import tictactoe.players.PlayerTypes;
 
-public class SwingMessenger extends JFrame implements IMessenger {
+public class SwingMessenger implements IMessenger {
     // Eclipse is psychotic about adding this...
     private static final long serialVersionUID = 4824133673451387974L;
-    
+    private JFrame frame;
     private Board board;
     private IScorer scorer;
     private JPanel boardPanel;
 
+    public JFrame getFrame() {
+    	return frame;
+    }
+    
     public JPanel getBoardPanel() {
         return boardPanel;
     }
@@ -36,25 +40,26 @@ public class SwingMessenger extends JFrame implements IMessenger {
     public SwingMessenger(Board board, IScorer scorer) {
         this.board = board;
         this.scorer = scorer;
+        frame = new JFrame();
         initWindow();
     }
     
     private void initWindow() {
         JPanel panel = new JPanel();
-        getContentPane().add(panel);
+        frame.getContentPane().add(panel);
 
         panel.setLayout(null);
         
         initMenu();
         initBoardDisplay();
         
-        setTitle("TicTacToe");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setMinimumSize(new Dimension(400, 400));
+        frame.setTitle("TicTacToe");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setMinimumSize(new Dimension(400, 400));
         
         // Center
-        setLocationRelativeTo(null);
-        setVisible(true);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }
     
     private void initMenu() {
@@ -72,7 +77,7 @@ public class SwingMessenger extends JFrame implements IMessenger {
         
         menuBar.add(file);
         
-        setJMenuBar(menuBar);
+        frame.setJMenuBar(menuBar);
     }
     
     private void initBoardDisplay() {
@@ -86,7 +91,7 @@ public class SwingMessenger extends JFrame implements IMessenger {
             boardPanel.add(button);
         }
         
-        add(boardPanel);
+        frame.add(boardPanel);
         boardPanel.setVisible(true);
     }
     

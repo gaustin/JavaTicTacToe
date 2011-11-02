@@ -29,8 +29,8 @@ public class TestSwingMessenger extends TestCase {
     }
     
     public void testWindow() {
-        assertEquals(JFrame.EXIT_ON_CLOSE, messenger.getDefaultCloseOperation());
-        assertEquals("TicTacToe", messenger.getTitle());
+        assertEquals(JFrame.EXIT_ON_CLOSE, messenger.getFrame().getDefaultCloseOperation());
+        assertEquals("TicTacToe", messenger.getFrame().getTitle());
     }
     
     public void testBoard() {
@@ -45,7 +45,7 @@ public class TestSwingMessenger extends TestCase {
     }
     
     public void testMenu() {
-        JMenuBar menuBar = messenger.getJMenuBar();
+        JMenuBar menuBar = messenger.getFrame().getJMenuBar();
         assertEquals(1, menuBar.getMenuCount());
         
         JMenu fileMenu = menuBar.getMenu(0);
