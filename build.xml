@@ -39,7 +39,7 @@
     
     <target name="compile-test">
         <mkdir dir="${build.loc}" />
-        <javac srcdir="${source.loc}" destdir="${build.loc}" includeantruntime="false">
+        <javac srcdir="${source.loc}" destdir="${build.loc}" debug="on" includeantruntime="false">
             <classpath refid="classpath.test"/>
             <include name="**/*.java"/>
         </javac>
