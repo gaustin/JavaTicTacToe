@@ -34,7 +34,7 @@
         <javac srcdir="${source.loc}" destdir="${build.loc}" includeantruntime="false">
             <classpath refid="classpath"/>
             <include name="**/*.java"/>
-        </javac>        
+        </javac>
     </target>
     
     <target name="compile-test">
@@ -57,6 +57,12 @@
 
     <target name="play" depends="clean,compile">
         <java classname="tictactoe.ui.TicTacToe" fork="yes">
+            <classpath refid="classpath" />
+        </java>
+    </target>
+
+    <target name="play-gui" depends="clean,compile">
+        <java classname="tictactoe.ui.TicTacToe" arg="swing" fork="yes">
             <classpath refid="classpath" />
         </java>
     </target>

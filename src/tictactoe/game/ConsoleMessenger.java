@@ -63,12 +63,17 @@ public class ConsoleMessenger implements IMessenger {
         return boardRep;
     }
     
-    public PlayerTypes getPlayerType(char mark) throws IOException {
+    public PlayerTypes getPlayerType(char mark) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         PlayerTypes playerType = null;
         
         System.out.println("Enter a player type for the " + mark + " player (1) for Human, (2) for Computer: ");
-        String input = reader.readLine();
+        String input = "2";
+		try {
+			input = reader.readLine();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
         if ("1".equals(input)) {
             playerType = PlayerTypes.Human;
         } else if ("2".equals(input)) {

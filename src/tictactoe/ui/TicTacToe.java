@@ -13,7 +13,13 @@ public class TicTacToe {
         
         Board board = new Board(9);
         IScorer scorer = new TicTacToeScorer(board);
-        ConsoleMessenger messenger = new ConsoleMessenger(board, scorer);
+        IMessenger messenger = null;
+        if (args.length == 1) { 
+            messenger = MessengerFactory.create(MessengerTypes.valueOf(args[0].toUpperCase()), board, scorer);
+        } else {
+            messenger = MessengerFactory.create(MessengerTypes.CONSOLE, board, scorer);
+        }
+        
         IReferee referee = new Referee();
 
         PlayerFactory factory = new PlayerFactory();

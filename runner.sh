@@ -8,5 +8,5 @@ else
  eval "ant compile"
 fi
 
-
-java -cp build tictactoe.ui.TicTacToe
+# pass all arguments on to TTT
+java -cp build tictactoe.ui.TicTacToe $@

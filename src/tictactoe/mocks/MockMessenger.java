@@ -50,7 +50,7 @@ public class MockMessenger implements IMessenger {
         return "";
     }
 
-    public PlayerTypes getPlayerType(char mark) throws IOException {
+    public PlayerTypes getPlayerType(char mark) {
         getPlayerTypeCalled  = true;
         return PlayerTypes.Human;
     }

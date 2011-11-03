@@ -1,6 +1,7 @@
 package tictactoe.game;
 
 import tictactoe.players.Player;
+import tictactoe.players.PlayerTypes;
 
 public interface IMessenger {
     public int getMoveFromPlayer(Player player);
@@ -10,4 +11,5 @@ public interface IMessenger {
     public boolean doPlayAgain();
     public void displayResults();
 	public void choiceMade(int choice);
+	public PlayerTypes getPlayerType(char mark);
 }

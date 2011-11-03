@@ -7,7 +7,6 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -18,7 +17,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 import tictactoe.players.Player;
-import tictactoe.players.PlayerFactory;
 import tictactoe.players.PlayerTypes;
 import tictactoe.ui.swing.PlayerTypeDialog;
 import tictactoe.ui.swing.ResultsDialog;
@@ -113,8 +111,6 @@ public class SwingMessenger implements IMessenger {
     
     @Override
     public void displayResults() {
-        System.out.println("displayResults");
-        System.out.println("winner: " + scorer.getWinner());
         ResultsDialog rd = new ResultsDialog(scorer);
         rd.setVisible(true);
         doReplay = rd.getDoReplay();
@@ -122,14 +118,11 @@ public class SwingMessenger implements IMessenger {
 
     @Override
     public boolean doPlayAgain() {
-        System.out.println("doPlayAgain");
-        //frame.dispose();
         return doReplay;
     }
 
     @Override
     public int getMoveFromPlayer(Player player) {
-        System.out.println("getMoveFromPlayer " + player.getMark());
         
         waitForUserInput = true;
         while (waitForUserInput) {
