@@ -1,5 +1,6 @@
 package tictactoe.tests;
 
+import tictactoe.game.Board;
 import tictactoe.game.IMessenger;
 import tictactoe.mocks.MockMessenger;
 import tictactoe.players.Player;
@@ -12,7 +13,7 @@ public class TestPlayerFactory extends TestCase {
     IMessenger messenger;
     public void setUp() {
         factory = new PlayerFactory();
-        messenger = new MockMessenger();
+        messenger = new MockMessenger(new Board(9));
     }
     
     public void testCreate() {

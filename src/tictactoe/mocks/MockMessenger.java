@@ -17,7 +17,13 @@ public class MockMessenger implements IMessenger {
     public boolean getPlayerTypeCalled = false;
 	public boolean doPlayAgainCalled = false;
 	public boolean displayResultsCalled = false;
+	public boolean choiceMadeCalled = false;
     
+	public Board board;
+	public MockMessenger(Board board) {
+		this.board = board;
+	}
+	
     @Override
     public int getMoveFromPlayer(Player player) {
         getMoveFromPlayerCalled = true;
@@ -58,6 +64,11 @@ public class MockMessenger implements IMessenger {
 	@Override
 	public void displayResults() {
 		displayResultsCalled = true;		
+	}
+
+	@Override
+	public void choiceMade(int choice) {
+		choiceMadeCalled  = true;
 	}
     
 }

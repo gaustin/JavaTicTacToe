@@ -14,7 +14,6 @@ import tictactoe.game.Board;
 import tictactoe.game.IScorer;
 import tictactoe.game.SwingMessenger;
 import tictactoe.game.TicTacToeScorer;
-import tictactoe.players.PlayerTypes;
 import junit.framework.TestCase;
 
 public class TestSwingMessenger extends TestCase {
@@ -55,9 +54,5 @@ public class TestSwingMessenger extends TestCase {
         
         JMenuItem exitMenuItem = fileMenu.getItem(0);
         assertEquals(KeyEvent.VK_C, exitMenuItem.getMnemonic());
-    }
-    
-    public void testGetPlayerType() {
-        assertEquals(PlayerTypes.MinimaxComputer, messenger.getPlayerType('X'));
     }
 }

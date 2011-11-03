@@ -38,8 +38,8 @@ public class Game {
                 messenger.promptPlayerForMove(player);
                 choice = player.getChoice(boardCopy);
             }
-            
-            board.markPosition(player.getMark(), choice);
+
+        	board.markPosition(player.getMark(), choice);
             
             turn++;
         }

@@ -9,4 +9,5 @@ public interface IMessenger {
     public void informPlayerOfInvalidChoice();
     public boolean doPlayAgain();
     public void displayResults();
+	public void choiceMade(int choice);
 }

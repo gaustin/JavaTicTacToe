@@ -20,11 +20,12 @@ public class TestGame extends TestCase {
     
     public void setUp() {
         board = new MockBoard(9);
-        messenger = new MockMessenger();
+        messenger = new MockMessenger(board);
         xPlayer = new MockPlayer('X');
         oPlayer = new MockPlayer('O');
         referee = new MockReferee();
         scorer = new MockScorer(board);
+        scorer.winner = 0;
         game = new Game(board, messenger, referee, scorer, xPlayer, oPlayer);
     }
     

@@ -3,6 +3,7 @@ package tictactoe.game;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -11,7 +12,6 @@ import java.io.IOException;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -20,6 +20,8 @@ import javax.swing.JPanel;
 import tictactoe.players.Player;
 import tictactoe.players.PlayerFactory;
 import tictactoe.players.PlayerTypes;
+import tictactoe.ui.swing.PlayerTypeDialog;
+import tictactoe.ui.swing.ResultsDialog;
 
 public class SwingMessenger implements IMessenger {
     // Eclipse is psychotic about adding this...
@@ -28,7 +30,13 @@ public class SwingMessenger implements IMessenger {
     private Board board;
     private IScorer scorer;
     private JPanel boardPanel;
-
+    private boolean waitForUserInput;
+    private int lastMove;
+    private boolean doReplay;
+    private String emptyBoardMark = "-";
+    
+    private IMessenger messenger = this;
+    
     public JFrame getFrame() {
     	return frame;
     }
@@ -41,6 +49,9 @@ public class SwingMessenger implements IMessenger {
         this.board = board;
         this.scorer = scorer;
         frame = new JFrame();
+        waitForUserInput = false;
+        doReplay = false;
+        lastMove = -1;
         initWindow();
     }
     
@@ -86,7 +97,12 @@ public class SwingMessenger implements IMessenger {
         boardPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         
         for (int i = 0; i <= 8; i++) {
-            JButton button = new JButton("-");
+            final JButton button = new JButton(emptyBoardMark);
+            button.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent event) {
+                	messenger.choiceMade(Integer.parseInt(button.getName()));
+                }
+            });
             button.setName("" + i);
             boardPanel.add(button);
         }
@@ -99,28 +115,50 @@ public class SwingMessenger implements IMessenger {
     public void displayResults() {
         System.out.println("displayResults");
         System.out.println("winner: " + scorer.getWinner());
+        ResultsDialog rd = new ResultsDialog(scorer);
+        rd.setVisible(true);
+        doReplay = rd.getDoReplay();
     }
 
     @Override
     public boolean doPlayAgain() {
         System.out.println("doPlayAgain");
-        return false;
+        //frame.dispose();
+        return doReplay;
     }
 
     @Override
     public int getMoveFromPlayer(Player player) {
         System.out.println("getMoveFromPlayer " + player.getMark());
-        return 0;
+        
+        waitForUserInput = true;
+        while (waitForUserInput) {
+            try
+            {
+                Thread.sleep(100);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+        
+        return lastMove;
     }
 
     @Override
+    public void choiceMade(int choice) {
+    	waitForUserInput = false;
+    	lastMove = choice;
+    }
+    
+    @Override
     public void informPlayerOfInvalidChoice() {
-        System.out.println("informPlayerOfInvalidChoice");
+        Toolkit.getDefaultToolkit().beep();
     }
 
     @Override
     public void promptPlayerForMove(Player player) {
-        System.out.println("promptPlayerForMove " + player.getMark());
     }
 
     @Override
@@ -137,38 +175,19 @@ public class SwingMessenger implements IMessenger {
                 mark = board.markAt(position);
                 if(mark != 0) {
                 	button.setText("" + mark);
+                } else {
+                	button.setText(emptyBoardMark);
                 }
             }
         }
     }
     
     public PlayerTypes getPlayerType(char mark) {
-        return PlayerTypes.MinimaxComputer;
-    }
-    
-    // TODO: Just for testing purposes.
-    public static void main(String[] args) throws IOException {
+        PlayerTypeDialog ptd = new PlayerTypeDialog(mark);
+        ptd.setVisible(true);
         
-        Board board = new Board(9);
-        IScorer scorer = new TicTacToeScorer(board);
-        SwingMessenger messenger = new SwingMessenger(board, scorer);
-        IReferee referee = new Referee();
-
-        PlayerFactory factory = new PlayerFactory();
+        PlayerTypes selectedPlayerType = ptd.getPlayerType();
         
-        Player oPlayer = factory.create('O', messenger.getPlayerType('O'), messenger); 
-        Player xPlayer = factory.create('X', messenger.getPlayerType('X'), messenger);
-        xPlayer.setOpponent(oPlayer);
-        oPlayer.setOpponent(xPlayer);
-        
-        do {
-            Game game = new Game(board, messenger, referee, scorer, xPlayer, oPlayer);
-            
-            game.play();
-            
-            messenger.displayResults();
-            
-            game.reset();
-        } while (messenger.doPlayAgain());
+        return  selectedPlayerType == null ? PlayerTypes.MinimaxComputer : selectedPlayerType;
     }
 }

@@ -7,7 +7,10 @@ public class MockScorer extends TicTacToeScorer {
 
     public boolean isGameOverCalled = false;
     public boolean resetCalled = false;
-
+	public boolean isDrawCalled = false;
+	public boolean isDraw = false;
+	public boolean isGetWinnerCalled = false;
+	public char winner = 'X';
     public MockScorer(Board board) {
         super(board);
     }
@@ -20,5 +23,15 @@ public class MockScorer extends TicTacToeScorer {
     public void reset() {
         resetCalled = true;
         super.reset();
+    }
+    
+    public boolean isDraw() {
+    	isDrawCalled  = true;
+    	return isDraw;
+    }
+    
+    public char getWinner() {
+    	isGetWinnerCalled = true;
+    	return winner;
     }
 }

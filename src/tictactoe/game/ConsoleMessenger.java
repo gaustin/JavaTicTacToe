@@ -98,4 +98,9 @@ public class ConsoleMessenger implements IMessenger {
         else
             System.out.println(scorer.getWinner() + " won!");
 	}
+
+	@Override
+	public void choiceMade(int choice) {
+		// We don't care about managing any state in this messenger.
+	}
 }
