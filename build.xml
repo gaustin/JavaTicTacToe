@@ -62,7 +62,7 @@
     </target>
 
     <target name="play-gui" depends="clean,compile">
-        <java classname="tictactoe.ui.TicTacToe" arg="swing" fork="yes">
+        <java classname="tictactoe.ui.TicTacToe" args="swing" fork="yes">
             <classpath refid="classpath" />
         </java>
     </target>
