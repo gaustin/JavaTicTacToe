@@ -50,8 +50,5 @@ public class TestSwingMessenger extends TestCase {
         assertEquals("File", fileMenu.getText());
         
         assertEquals(1, fileMenu.getItemCount());
-        
-        JMenuItem exitMenuItem = fileMenu.getItem(0);
-        assertEquals(KeyEvent.VK_C, exitMenuItem.getMnemonic());
     }
 }
