@@ -1,7 +1,5 @@
 package tictactoe.mocks;
 
-import java.io.IOException;
-
 import tictactoe.game.Board;
 import tictactoe.game.IMessenger;
 import tictactoe.players.Player;

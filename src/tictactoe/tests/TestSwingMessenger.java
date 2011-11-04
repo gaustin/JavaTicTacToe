@@ -1,20 +1,17 @@
 package tictactoe.tests;
 
 import java.awt.Component;
-import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import junit.framework.TestCase;
 import tictactoe.game.Board;
 import tictactoe.game.IScorer;
 import tictactoe.game.SwingMessenger;
 import tictactoe.game.TicTacToeScorer;
-import junit.framework.TestCase;
 
 public class TestSwingMessenger extends TestCase {
     SwingMessenger messenger;

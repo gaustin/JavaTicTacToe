@@ -6,7 +6,6 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -22,9 +21,6 @@ import tictactoe.ui.swing.PlayerTypeDialog;
 import tictactoe.ui.swing.ResultsDialog;
 
 public class SwingMessenger implements IMessenger {
-    // Eclipse is psychotic about adding this...
-    private static final long serialVersionUID = 4824133673451387974L;
-    
     private JFrame frame;
     private Board board;
     private IScorer scorer;
