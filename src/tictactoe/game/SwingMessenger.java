@@ -24,6 +24,7 @@ import tictactoe.ui.swing.ResultsDialog;
 public class SwingMessenger implements IMessenger {
     // Eclipse is psychotic about adding this...
     private static final long serialVersionUID = 4824133673451387974L;
+    
     private JFrame frame;
     private Board board;
     private IScorer scorer;
@@ -76,7 +77,6 @@ public class SwingMessenger implements IMessenger {
         JMenu file = new JMenu("File");
         
         JMenuItem exitMenuItem = new JMenuItem("Exit");
-        exitMenuItem.setMnemonic(KeyEvent.VK_C);
         exitMenuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 System.exit(0);
