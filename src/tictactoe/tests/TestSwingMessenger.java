@@ -28,7 +28,6 @@ public class TestSwingMessenger extends TestCase {
     }
     
     public void testWindow() {
-        assertEquals(JFrame.EXIT_ON_CLOSE, messenger.getFrame().getDefaultCloseOperation());
         assertEquals("TicTacToe", messenger.getFrame().getTitle());
     }
     
