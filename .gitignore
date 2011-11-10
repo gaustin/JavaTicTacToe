@@ -1,2 +1,4 @@
 .settings
 *.class
+.DS_Store
+.idea

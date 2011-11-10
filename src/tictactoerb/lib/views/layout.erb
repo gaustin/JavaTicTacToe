@@ -1,0 +1,16 @@
+<html>
+  <head>
+      <title>Tic-Tac-Toe: The most wonderful game in the world.</title>
+      <style>
+        #error { background-color: #F5F24E; width: 25%; padding: 5px 5px 5px 5px; }
+      </style>
+  </head>
+  <body>
+    <%= yield %>
+    <% unless session[:error_statement].nil? %>
+        <div id="error">
+            <%= session[:error_statement] %>
+        </div>
+    <% end %>
+  </body>
+</html>

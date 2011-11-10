@@ -1,0 +1,14 @@
+<div id="game_results">
+    <div id="result_message">
+        <% if @scorer.is_draw %>
+            The game was a draw!
+        <% else %>
+            <em><%= @scorer.get_winner.chr %></em> won!
+        <% end %>
+    </div>
+    <div id="new_game">
+        <form method="POST" action="/game/new">
+            <input type="submit" value="New Game" />
+        </form>
+    </div>
+</div>
