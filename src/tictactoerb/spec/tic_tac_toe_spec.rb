@@ -2,8 +2,6 @@ require File.join(File.dirname(__FILE__), 'spec_helper')
 
 describe "TicTacToe" do
   include Rack::Test::Methods
-  include Webrat::Methods
-  include Webrat::Matchers
 
   def app
     TicTacToe.set(:environment, :test)
@@ -36,12 +34,4 @@ describe "TicTacToe" do
     post last_response["Location"], { :choice => 0 }
     last_response.should be_ok
   end
-
-  it "should start a game" do
-    visit '/'
-    click_button 'New Game'
-  end
-
-  #TODO: Add a webrat test to play the entire game through.
-  # Bundler
 end
