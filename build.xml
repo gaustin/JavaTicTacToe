@@ -36,7 +36,12 @@
             <include name="**/*.java"/>
         </javac>
     </target>
-    
+
+    <target name="build-jar" depends="clean, compile">
+        <mkdir dir="${build.loc}" />
+        <jar basedir="${build.loc}" destfile="${lib.loc}/tictactoe.jar" excludes="**/Test*.class" />
+    </target>
+
     <target name="compile-test">
         <mkdir dir="${build.loc}" />
         <javac srcdir="${source.loc}" destdir="${build.loc}" debug="on" includeantruntime="false">

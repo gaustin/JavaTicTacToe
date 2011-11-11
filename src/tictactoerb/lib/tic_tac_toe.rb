@@ -83,7 +83,7 @@ class TicTacToe < Sinatra::Base
       if choice == 0
         "<input type='radio' name='choice' value='#{position}' />"
       else
-        choice.chr
+        "<span>#{choice.chr}</span>"
       end
     end
   end
