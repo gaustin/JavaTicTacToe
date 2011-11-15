@@ -2,7 +2,6 @@ module GameKeeper
   GAME_DATA_FILE = File.join(File.dirname(__FILE__), '..', '..', 'game_data.txt')
 
   def save(state)
-    puts "Serializing state: " + state
     file = File.open(GAME_DATA_FILE, "w+")
     file.write(state + "\n")
     file.close
@@ -12,7 +11,6 @@ module GameKeeper
   def retrieve
     file = File.open(GAME_DATA_FILE, "r")
     state = file.readline.chomp
-    puts "Loaded state: " + state
     file.close
     state
   end
