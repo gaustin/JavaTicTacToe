@@ -1,0 +1,44 @@
+#game_display {
+    width: 400;
+    margin-left: 25%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    background-color: #dcdcdc;
+}
+
+#game_display .new_game {
+    margin-left: 175;
+}
+
+#result_message {
+    margin-left: 175;
+}
+
+#game_board {
+    margin-left: 20%;
+}
+
+#game_board tr {
+    padding: 0px;
+}
+
+#game_board td {
+    width: 75px;
+    border-width: 1px;
+    border-style: solid;
+    padding: 0px;
+}
+
+#game_board td input[type='radio'] {
+    margin-left: 45%;
+}
+
+#game_board td span {
+    margin-left: 45%;
+}
+
+#game_board td input[type='submit'] {
+    margin-left: 34%;
+}
+
+#error { background-color: #F5F24E; width: 25%; padding: 5px 5px 5px 5px; }
