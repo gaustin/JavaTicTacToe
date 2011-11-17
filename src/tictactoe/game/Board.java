@@ -74,4 +74,22 @@ public class Board {
 
         return mark == 0 ? pos.toCharArray()[0] : mark;
     }
+
+	public void loadState(String state) {
+		int stateLength = state.length();
+		for(int i = 0; i < stateLength; i++) {
+			cells[i] = state.charAt(i);
+		}
+		
+	}
+
+	public String serializeState() {
+		String result = "";
+		
+		for (char c : cells) {
+			result += c == 0 ? '-' : c;
+		}
+		
+		return result;
+	}
 }
