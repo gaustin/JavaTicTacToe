@@ -1,18 +1,11 @@
-<form method="POST" action="/game">
-    <table id="game_board">
-        <tbody>
-            <% [(0..2), (3..5), (6..8)].each do |cells| %>
-                <tr>
-                    <% cells.each do |position| %>
-                        <td><%= markup_for_position(@board, position) %></td>
-                    <% end %>
-                </tr>
-            <% end %>
+<table id="game_board">
+    <tbody>
+        <% [(0..2), (3..5), (6..8)].each do |cells| %>
             <tr>
-                <td colspan='3'>
-                    <input type="submit" value="Make Move" />
-                </td>
+                <% cells.each do |position| %>
+                    <td><%= markup_for_position(@board, position) %></td>
+                <% end %>
             </tr>
-        </tbody>
-    </table>
-</form>
+        <% end %>
+   </tbody>
+</table>

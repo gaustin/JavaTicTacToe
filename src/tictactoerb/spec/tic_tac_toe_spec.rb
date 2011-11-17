@@ -4,11 +4,11 @@ describe "TicTacToe" do
   include Rack::Test::Methods
 
   def app
-    TicTacToe.set(:environment, :test)
-    TicTacToe.set(:run, false)
-    TicTacToe.set(:raise_errors, true)
-    TicTacToe.set(:logging, false)
-    TicTacToe
+    TicTacToe::Game.set(:environment, :test)
+    TicTacToe::Game.set(:run, false)
+    TicTacToe::Game.set(:raise_errors, true)
+    TicTacToe::Game.set(:logging, false)
+    TicTacToe::Game
   end
 
   it "should respond with a form and button" do
@@ -27,11 +27,4 @@ describe "TicTacToe" do
     last_response.should be_ok
   end
 
-  it "should mark an X in the first position and O should make a mark" do
-    post '/game/new'
-    last_response.should be_redirect
-
-    post last_response["Location"], { :choice => 0 }
-    last_response.should be_ok
-  end
 end

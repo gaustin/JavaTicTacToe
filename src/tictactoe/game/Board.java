@@ -76,18 +76,20 @@ public class Board {
     }
 
 	public void loadState(String state) {
+		if (state == null)
+			return;
+		
 		int stateLength = state.length();
 		for(int i = 0; i < stateLength; i++) {
 			cells[i] = state.charAt(i);
 		}
-		
 	}
 
 	public String serializeState() {
 		String result = "";
 		
 		for (char c : cells) {
-			result += c == 0 ? '-' : c;
+			result += c;
 		}
 		
 		return result;

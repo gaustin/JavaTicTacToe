@@ -1,20 +1,21 @@
 #game_display {
-    width: 400;
-    margin-left: 25%;
+    width: 400px;
+    text-align: center;
     padding-top: 5%;
     padding-bottom: 5%;
     background-color: #dcdcdc;
 }
 
 #game_display .new_game {
-    margin-left: 175;
+    text-align: center;
 }
 
 #result_message {
-    margin-left: 175;
+    text-align: center;
 }
 
 #game_board {
+    text-align: center;
     margin-left: 20%;
 }
 
@@ -24,21 +25,12 @@
 
 #game_board td {
     width: 75px;
-    border-width: 1px;
-    border-style: solid;
+    border-width: 0px;
     padding: 0px;
 }
 
-#game_board td input[type='radio'] {
-    margin-left: 45%;
+#error { 
+    background-color: #F5F24E; 
+    width: 400px; 
+    text-align: center;
 }
-
-#game_board td span {
-    margin-left: 45%;
-}
-
-#game_board td input[type='submit'] {
-    margin-left: 34%;
-}
-
-#error { background-color: #F5F24E; width: 25%; padding: 5px 5px 5px 5px; }
