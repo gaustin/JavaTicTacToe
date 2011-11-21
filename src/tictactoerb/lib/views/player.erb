@@ -3,7 +3,7 @@
         <% [(0..2), (3..5), (6..8)].each do |cells| %>
             <tr>
                 <% cells.each do |position| %>
-                    <td><%= markup_for_position(@board, position) %></td>
+                    <td><%= markup_for_position(@board, position, @game_id) %></td>
                 <% end %>
             </tr>
         <% end %>

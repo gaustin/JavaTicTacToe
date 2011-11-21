@@ -1,25 +1,54 @@
+require 'uuidtools'
+
 module TicTacToe
   module GameKeeper
-    GAME_DATA_FILE = File.join(File.dirname(__FILE__), '..', '..', 'game_data.txt')
+    GAME_DATA_DIR = File.join(File.dirname(__FILE__), '..', '..', 'db')
 
     def save(state)
-      file = File.open(GAME_DATA_FILE, "w+")
-      file.write(state + "\n")
-      file.close
+      game_id = find_available_filename
+      File.open(filepath_for(game_id), "w+") do |f|
+        f.write(state + "\n")
+      end
+      game_id
+    end
+
+    def update(game_id, state)
+      File.open(filepath_for(game_id), "w+") do |f|
+        f.write(state + "\n")
+      end
       true
     end
 
-    def retrieve
-      file = File.open(GAME_DATA_FILE, "r")
-      state = file.readline.chomp
-      file.close
+    def retrieve(game_id)
+      state = File.open(filepath_for(game_id), "r") do |f|
+        f.readline.chomp
+      end
       state
     end
 
-    def clear
-      if File.exists?(GAME_DATA_FILE)
-        File.unlink(GAME_DATA_FILE)
+    def delete(game_id)
+      path = filepath_for(game_id)
+      if File.exists?(path)
+        File.unlink(path)
       end
+    end
+
+    def delete_all
+      Dir.glob("#{GAME_DATA_DIR}/*").each do |filename|
+        File.unlink(filename) unless File.directory?(filename)
+      end
+    end
+
+    def find_available_filename
+      game_id = UUIDTools::UUID.timestamp_create
+      while File.exists?(filepath_for(game_id))
+        game_id = UUIDTools::UUID.timestamp_create
+      end
+      game_id
+    end
+
+    def filepath_for(game_id)
+      File.join(GAME_DATA_DIR, game_id.to_s + ".dat")
     end
   end
 end

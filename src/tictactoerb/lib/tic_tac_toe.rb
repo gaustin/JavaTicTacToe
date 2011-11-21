@@ -4,6 +4,7 @@ require 'rubygems'
 require 'sinatra/base'
 $:.unshift(File.dirname(__FILE__))
 require 'tictactoe/game_keeper'
+require 'tictactoe/state'
 
 ComputerPlayer = Java::tictactoe.players::ComputerPlayer
 HumanPlayer = Java::tictactoe.players::HumanPlayer
@@ -19,7 +20,7 @@ Board = Java::tictactoe.game::Board
 
 module TicTacToe
   class Game < Sinatra::Base
-    include TicTacToe::GameKeeper
+    include TicTacToe::State
     set :sessions, true
     def initialize
       super
@@ -30,19 +31,23 @@ module TicTacToe
     end
 
     post '/game/new' do
-      reset
-      save(Board.new(9).serialize_state)
-      redirect "/game"
+      clear_error
+      @board = Board.new(9)
+      @game_id = save_board(@board)
+      redirect "/game/#{@game_id}"
     end
 
     get '/game' do
-      @board = load_board
+      @board = load_board(params[:game_id])
       erb :player
     end
 
-    post '/game/:choice' do
+    # TODO: Before filter
+    post '/game/:game_id/:choice' do
       position = params[:choice].to_i
-      @board = load_board
+      game_id = params[:game_id]
+
+      @board = load_board(@game_id)
 
       @scorer = TicTacToeScorer.new(@board)
 
@@ -54,25 +59,13 @@ module TicTacToe
         set_error "Invalid move."
       end
 
-      save(@board.serialize_state)
+      update_board(@game_id, @board)
 
       if @scorer.is_game_over
         erb :game_over
       else
         erb :player
       end
-    end
-
-    def reset
-      clear_error
-      clear
-    end
-
-    def load_board
-      board = Board.new(9)
-      state = retrieve
-      board.load_state(state)
-      board
     end
 
     def valid_move?(board, mark, choice)
@@ -96,10 +89,10 @@ module TicTacToe
     end
 
     helpers do
-      def markup_for_position(board, position)
+      def markup_for_position(board, position, game_id)
         choice = board.mark_at(position)
         if choice == 0
-          "<form method='POST' action='/game/#{position}'>" +
+          "<form method='POST' action='/game/#{game_id}/#{position}'>" +
             "<input type='submit' value='-' />" +
           "</form>"
         else

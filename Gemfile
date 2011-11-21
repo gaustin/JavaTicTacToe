@@ -1,6 +1,7 @@
 source :rubygems
 
 gem "sinatra", "1.3.1"
+gem "uuidtools"
 
 group :test do
   gem "rspec", "2.7.0"

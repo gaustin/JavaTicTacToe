@@ -4,13 +4,45 @@ describe TicTacToe::GameKeeper do
   include TicTacToe::GameKeeper
 
   before :each do
-    clear
+    delete_all
+  end
+
+  it "should return an id for the state" do
+    state = '-' * 9
+    game_id = save(state)
+    game_id.should_not be_nil
   end
 
   it "should save state" do
     state = '-' * 9
-    save(state)
-    retrieved_state = retrieve
+    game_id = save(state)
+    retrieved_state = retrieve(game_id)
     retrieved_state.should == state
+  end
+
+  it "should delete a given game" do
+    state = 'X' * 9
+    game_id = save(state)
+    
+    filepath = filepath_for(game_id)
+    File.exists?(filepath).should be_true
+    delete(game_id)
+    File.exists?(filepath).should be_false
+  end
+
+  it "should update a given game" do
+    state = 'XOXOXOXXX'
+    game_id = save(state)
+    update(game_id, state.reverse)
+    retrieved_state = retrieve(game_id)
+
+    retrieved_state.should == state.reverse
+  end
+
+  it "should give a valid filepath" do
+    game_id = UUIDTools::UUID.timestamp_create
+    expected_path = File.join(TicTacToe::GameKeeper::GAME_DATA_DIR, game_id.to_s + ".dat")
+
+    filepath_for(game_id).should == expected_path
   end
 end
