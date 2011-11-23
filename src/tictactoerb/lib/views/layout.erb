@@ -6,11 +6,11 @@
   <body>
     <div id="game_display">
         <%= yield %>
+        <% unless session[:error_statement].nil? %>
+            <div id="error">
+                <%= session[:error_statement] %>
+            </div>
+        <% end %>
     </div>
-    <% unless session[:error_statement].nil? %>
-        <div id="error">
-            <%= session[:error_statement] %>
-        </div>
-    <% end %>
   </body>
 </html>

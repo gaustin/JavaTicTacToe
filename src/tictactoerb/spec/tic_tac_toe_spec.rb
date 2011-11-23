@@ -31,6 +31,7 @@ describe "TicTacToe" do
     body = last_response.body
     body.should include('form')
     body.should include('submit')
+    body.should include('New Game')
   end
 
   it "should set an error on an invalid move" do
