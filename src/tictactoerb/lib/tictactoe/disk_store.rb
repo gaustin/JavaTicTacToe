@@ -11,14 +11,14 @@ module TicTacToe
     def save(state)
       game_id = find_available_filename
       File.open(filepath_for(game_id), "w+") do |f|
-        f.write(state + "\n")
+        f.puts(state)
       end
       game_id
     end
 
     def update(game_id, state)
       File.open(filepath_for(game_id), "w+") do |f|
-        f.write(state + "\n")
+        f.puts(state)
       end
       true
     end

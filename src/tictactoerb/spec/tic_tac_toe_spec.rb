@@ -19,7 +19,7 @@ describe "TicTacToe" do
     post '/game/new'
 
     location = last_response["Location"]
-    game_id = location.split("/").last
+    game_id = get_game_id(location)
     board = TicTacToe::State.load_board(game_id)
     all_null = board.get_spaces.all? { |mark| mark == 0 }  
     all_null.should be_true
@@ -34,7 +34,46 @@ describe "TicTacToe" do
   end
 
   it "should set an error on an invalid move" do
-    pending
+    post '/game/new'
+
+    game_url = last_response["Location"]
+    post game_url + "/0"
+
+    post game_url + "/0"
+    last_response.body.should include("Invalid")
   end
 
+  it "should clear an error when a valid move is made after an invalid one" do
+    post '/game/new'
+
+    game_url = last_response["Location"]
+    post "#{game_url}/0"
+    post "#{game_url}/0"
+    
+    game_id = get_game_id(game_url)
+    board = TicTacToe::State.load_board(game_id)
+    choice = board.empty_spaces.first
+    post "#{game_url}/#{choice}"
+    last_response.body.should_not include("Invalid")
+  end
+
+  it "should indicate the game result" do
+    post '/game/new'
+
+    game_url = last_response["Location"]
+    game_id = get_game_id(game_url)
+
+    board = TicTacToe::State.load_board(game_id)
+    (0..1).each do |i|
+      board.mark_position(?X, i)
+    end
+    TicTacToe::State.update_board(game_id, board)
+    
+    post "#{game_url}/2"
+    last_response.body.should include("won!")
+  end
+
+  def get_game_id(url)
+    url.split("/").last
+  end
 end

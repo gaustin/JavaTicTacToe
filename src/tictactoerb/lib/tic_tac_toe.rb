@@ -20,6 +20,7 @@ Board = Java::tictactoe.game::Board
 
 #TODOS:
 # Test error setting and clearing
+# Factor out constants into separate module
 
 module TicTacToe
   class Web < Sinatra::Base
