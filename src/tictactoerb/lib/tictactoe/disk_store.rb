@@ -1,8 +1,12 @@
 require 'uuidtools'
 
 module TicTacToe
-  module GameKeeper
+  module DiskStore
     GAME_DATA_DIR = File.join(File.dirname(__FILE__), '..', '..', 'db')
+
+    unless File.exists?(GAME_DATA_DIR)
+      Dir.mkdir(GAME_DATA_DIR)
+    end
 
     def save(state)
       game_id = find_available_filename

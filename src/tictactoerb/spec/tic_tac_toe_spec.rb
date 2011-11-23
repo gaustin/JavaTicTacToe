@@ -2,18 +2,17 @@ require File.join(File.dirname(__FILE__), 'spec_helper')
 
 describe "TicTacToe" do
   include Rack::Test::Methods
-  include TicTacToe::State
 
   def app
-    TicTacToe::Game.set(:environment, :test)
-    TicTacToe::Game.set(:run, false)
-    TicTacToe::Game.set(:raise_errors, true)
-    TicTacToe::Game.set(:logging, false)
-    TicTacToe::Game
+    TicTacToe::Web.set(:environment, :test)
+    TicTacToe::Web.set(:run, false)
+    TicTacToe::Web.set(:raise_errors, true)
+    TicTacToe::Web.set(:logging, false)
+    TicTacToe::Web
   end
 
   before :each do
-    delete_all
+    TicTacToe::State.delete_all
   end
 
   it "should create an empty game board" do
@@ -21,7 +20,7 @@ describe "TicTacToe" do
 
     location = last_response["Location"]
     game_id = location.split("/").last
-    board = load_board(game_id)
+    board = TicTacToe::State.load_board(game_id)
     all_null = board.get_spaces.all? { |mark| mark == 0 }  
     all_null.should be_true
   end

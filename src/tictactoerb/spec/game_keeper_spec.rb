@@ -1,7 +1,7 @@
 require File.join(File.dirname(__FILE__), 'spec_helper')
 
-describe TicTacToe::GameKeeper do
-  include TicTacToe::GameKeeper
+describe TicTacToe::DiskStore do
+  include TicTacToe::DiskStore
 
   before :each do
     delete_all
@@ -41,7 +41,7 @@ describe TicTacToe::GameKeeper do
 
   it "should give a valid filepath" do
     game_id = UUIDTools::UUID.timestamp_create
-    expected_path = File.join(TicTacToe::GameKeeper::GAME_DATA_DIR, game_id.to_s + ".dat")
+    expected_path = File.join(TicTacToe::DiskStore::GAME_DATA_DIR, game_id.to_s + ".dat")
 
     filepath_for(game_id).should == expected_path
   end
