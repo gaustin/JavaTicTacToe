@@ -1,26 +1,12 @@
-include Java
-require File.join(File.dirname(__FILE__), '..', '..', '..', 'lib', 'tictactoe.jar')
 require 'rubygems'
 require 'sinatra/base'
 $:.unshift(File.dirname(__FILE__))
+require 'tictactoe/java_constants'
 require 'tictactoe/disk_store'
 require 'tictactoe/state'
 require 'tictactoe/game_markup'
 require 'tictactoe/error_handling'
 require 'tictactoe/rules_helper'
-
-ComputerPlayer = Java::tictactoe.players::ComputerPlayer
-HumanPlayer = Java::tictactoe.players::HumanPlayer
-MinimaxStrategy = Java::tictactoe.players.strategies.MinimaxStrategy
-TicTacToeScorer = Java::tictactoe.game::TicTacToeScorer
-Referee = Java::tictactoe.game::Referee
-PlayerFactory = Java::tictactoe.players::PlayerFactory
-PlayerTypes = Java::tictactoe.players::PlayerTypes
-Board = Java::tictactoe.game::Board
-
-#TODOS:
-# Test error setting and clearing
-# Factor out constants into separate module
 
 module TicTacToe
   class Web < Sinatra::Base
