@@ -7,14 +7,6 @@
     border-radius: 15px;
 }
 
-#game_display .new_game {
-    text-align: center;
-}
-
-#result_message {
-    text-align: center;
-}
-
 #game_board {
     text-align: center;
 }
@@ -24,13 +16,14 @@
 }
 
 #game_board td {
-    width: 20px;
+    width: 26px;
+    height: 20px;
     border-width: 0px;
     padding: 0px;
     margin: 5px;
 }
 
-#game_board form {
+form {
     margin: 0px;
 }
 
