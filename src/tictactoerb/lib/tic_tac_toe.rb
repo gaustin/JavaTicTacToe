@@ -19,6 +19,7 @@ module TicTacToe
     end
 
     get '/' do
+      clear_error
       erb :index
     end
 

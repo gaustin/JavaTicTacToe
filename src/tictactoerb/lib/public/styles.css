@@ -28,6 +28,7 @@ form {
 }
 
 #error {
+    float: left;
     border-radius: 15px;
     height: 2em;
     line-height: 2em;

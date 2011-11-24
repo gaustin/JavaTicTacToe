@@ -44,6 +44,19 @@ describe "TicTacToe" do
     last_response.body.should include("Invalid")
   end
 
+  it "should clear the error for a new game" do
+    post '/game/new'
+
+    game_url = last_response["Location"]
+    post game_url + "/0"
+
+    post game_url + "/0"
+    last_response.body.should include("Invalid")
+    
+    post '/game/new'
+    last_response.body.should_not include("Invalid")
+  end
+
   it "should clear an error when a valid move is made after an invalid one" do
     post '/game/new'
 
