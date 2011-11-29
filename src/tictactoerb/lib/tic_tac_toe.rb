@@ -6,11 +6,11 @@ require 'tictactoe/disk_store'
 require 'tictactoe/state'
 require 'tictactoe/game_markup'
 require 'tictactoe/error_handling'
-require 'tictactoe/rules_helper'
+require 'tictactoe/game_actions'
 
 module TicTacToe
   class Web < Sinatra::Base
-    helpers GameMarkup, ErrorHandling, RulesHelper
+    helpers GameMarkup, ErrorHandling, GameActions
  
     set :sessions, true
 

@@ -2,7 +2,7 @@
     <% if @scorer.is_draw %>
         The game was a draw!
     <% else %>
-        <em><%= @scorer.get_winner.chr %></em> won!
+        <em><%= @scorer.winner.chr %></em> won!
     <% end %>
 </div>
 <form method="POST" action="/game/new">

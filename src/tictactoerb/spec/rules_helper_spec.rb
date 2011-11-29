@@ -1,23 +1,21 @@
 require File.join(File.dirname(__FILE__), 'spec_helper')
 
-describe TicTacToe::RulesHelper do
-  include TicTacToe::RulesHelper
+describe TicTacToe::GameActions do
+  include TicTacToe::GameActions
 
   before :each do
     @board = Board.new(9)
     @scorer = TicTacToeScorer.new(@board)
   end
 
-  it "should return the X player with nil opponent, and set the @player ivar" do
-    player.get_mark.should == ?X
-    player.get_opponent.should be_nil
-    @player.should_not be_nil
+  it "should return the X player with its opponent" do
+    player.mark.should == ?X
+    player.opponent.mark.should == ?O
   end
 
-  it "should return the O player with X as its opponent, and set the @opponent ivar" do
-    opponent.get_mark.should == ?O
-    opponent.get_opponent.get_mark.should == ?X
-    @opponent.should_not be_nil
+  it "should return the O player with X as its opponent" do
+    opponent.mark.should == ?O
+    opponent.opponent.mark.should == ?X
   end
 
   it "should discern a valid move" do

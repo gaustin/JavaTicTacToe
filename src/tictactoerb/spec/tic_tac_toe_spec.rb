@@ -21,7 +21,7 @@ describe "TicTacToe" do
     location = last_response["Location"]
     game_id = get_game_id(location)
     board = TicTacToe::State.load_board(game_id)
-    all_null = board.get_spaces.all? { |mark| mark == 0 }  
+    all_null = board.spaces.all? { |mark| mark == 0 }  
     all_null.should be_true
   end
 

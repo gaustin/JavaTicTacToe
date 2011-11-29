@@ -6,7 +6,7 @@ describe TicTacToe::State do
     game_id = TicTacToe::State.save(state)
     
     board = TicTacToe::State.load_board(game_id)
-    board.get_spaces.all? { |mark| mark.chr == 'X' }
+    board.spaces.all? { |mark| mark.chr == 'X' }
   end
 
   it "should save a board" do

@@ -1,8 +1,8 @@
 module TicTacToe
-  module RulesHelper
+  module GameActions
 
     def perform_turn(board, player, position, scorer)
-      mark = player.get_mark
+      mark = player.mark
       if valid_move?(board, mark, position) && !scorer.is_game_over
         board.mark_position(mark, position)
         opponent_move(board, scorer)
@@ -15,7 +15,7 @@ module TicTacToe
     def opponent_move(board, scorer)
       choice = opponent.get_choice(board)
       unless scorer.is_game_over
-        board.mark_position(opponent.get_mark, choice)
+        board.mark_position(opponent.mark, choice)
         choice
       else
         nil
@@ -27,14 +27,15 @@ module TicTacToe
     end
 
     def player
-      @player ||= HumanPlayer.new(?X)
+      player = HumanPlayer.new(?X)
+      opponent = ComputerPlayer.new(?O, MinimaxStrategy.new)
+      player.opponent = opponent
+      opponent.opponent = player
+      player
     end
 
     def opponent
-      @opponent ||= ComputerPlayer.new(?O, MinimaxStrategy.new)
-      @opponent.set_opponent(player)
-      player.set_opponent(@opponent)
-      @opponent
+      player.opponent
     end
   end
 end
