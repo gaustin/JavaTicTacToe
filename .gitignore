@@ -4,3 +4,5 @@
 .idea
 *.iml
 *.swp
+lib/tictactoe.jar
+src/tictactoerb/db
