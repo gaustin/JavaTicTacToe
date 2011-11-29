@@ -14,10 +14,6 @@ module TicTacToe
  
     set :sessions, true
 
-    def initialize
-      super
-    end
-
     get '/' do
       clear_error
       erb :index
