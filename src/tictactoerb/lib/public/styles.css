@@ -1,39 +1,84 @@
+body { background-color: #03406A; }
+
 #game_display {
-    padding: 50px;
-    margin: 50px;
-    width: 90px;
+    padding: 5%;
+    margin: 5%;
+    height: 75%;
     text-align: center;
-    background-color: #dcdcdc;
+    background-color: #FFC273;
     border-radius: 15px;
 }
 
 #game_board {
     text-align: center;
+    width: 100%;
+    height: 100%;
+    background-color: #6A6B6A; 
+    font: 1.5em arial,sans-serif;
 }
 
 #game_board tr {
     padding: 0px;
+    height: 33%;
 }
 
 #game_board td {
     width: 26px;
-    height: 20px;
     border-width: 0px;
     padding: 0px;
     margin: 5px;
+    background-color: #65A5D1;
+}
+
+.move_button {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.move_button:hover {
+    border: none;
+    background: #5CCCCC;
 }
 
 form {
+    line-height: 100%;
+    height: 100%;
     margin: 0px;
 }
 
-#error {
-    float: left;
+#new_game {
+    height: 100%;
+    width: 100%;
+}
+
+#new_game input {
+    width: 50%;
+    height: 50%;
+    position: relative;
+    font: 1.5em arial,sans-serif;
+    top: 25%;
+    bottom: 25%;
+}
+
+#result_message {
+    top: 5%;
+    position: relative;
+    border: 1px solid black;
     border-radius: 15px;
     height: 2em;
     line-height: 2em;
-    margin-left: -25;
-    width: 140px; 
+    text-align: center;
+    background-color: #00BB3F;
+}
+
+#error {
+    top: 5%;
+    position: relative;
+    border: 1px solid black;
+    border-radius: 15px;
+    height: 2em;
+    line-height: 2em;
     background-color: #F5F24E; 
     text-align: center;
 }

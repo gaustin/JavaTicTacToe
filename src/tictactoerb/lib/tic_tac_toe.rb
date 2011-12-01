@@ -16,7 +16,7 @@ module TicTacToe
 
     get '/' do
       clear_error
-      erb :index
+      erb :new_game
     end
 
     post '/game/new' do
@@ -36,7 +36,7 @@ module TicTacToe
       end
 
       if @scorer.is_game_over
-        erb :game_over
+        erb :new_game
       else
         erb :player
       end

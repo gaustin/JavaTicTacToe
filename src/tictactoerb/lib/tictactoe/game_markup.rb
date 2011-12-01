@@ -4,10 +4,10 @@ module TicTacToe
       choice = board.mark_at(position)
       if choice == 0
         "<form method='POST' action='/game/#{game_id}/#{position}'>" +
-          "<input type='submit' value='-' />" +
+          "<input class='move_button' type='submit' value='-' />" +
         "</form>"
       else
-        "<span>#{choice.chr}</span>"
+        "<span class='marked_space'>#{choice.chr}</span>"
       end
     end
   end
