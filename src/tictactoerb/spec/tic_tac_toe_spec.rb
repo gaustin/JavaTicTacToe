@@ -84,7 +84,24 @@ describe "TicTacToe" do
     TicTacToe::State.update_board(game_id, board)
     
     post "#{game_url}/2"
+    get last_response["Location"]
     last_response.body.should include("won!")
+  end
+
+  it "should delete the game after it's been completed" do
+    post '/game/new'
+
+    game_url = last_response["Location"]
+    game_id = get_game_id(game_url)
+
+    board = TicTacToe::State.load_board(game_id)
+    (0..1).each do |i|
+      board.mark_position(?X, i)
+    end
+    TicTacToe::State.update_board(game_id, board)
+
+    post "#{game_url}/2"
+    TicTacToe::State.exists?(game_id).should be_false 
   end
 
   def get_game_id(url)

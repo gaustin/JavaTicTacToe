@@ -5,12 +5,12 @@ require 'tictactoe/java_constants'
 require 'tictactoe/disk_store'
 require 'tictactoe/state'
 require 'tictactoe/game_markup'
-require 'tictactoe/error_handling'
+require 'tictactoe/user_messaging'
 require 'tictactoe/game_actions'
 
 module TicTacToe
   class Web < Sinatra::Base
-    helpers GameMarkup, ErrorHandling, GameActions
+    helpers GameMarkup, UserMessaging, GameActions
  
     set :sessions, true
 
@@ -20,6 +20,7 @@ module TicTacToe
     end
 
     post '/game/new' do
+      clear_message
       clear_error
       redirect "/game/#{@game_id}"
     end
@@ -36,7 +37,9 @@ module TicTacToe
       end
 
       if @scorer.is_game_over
-        erb :new_game
+        set_message(@scorer.is_draw ? "The game was a draw!" : "#{@scorer.winner.chr} won!")
+        State.delete(@game_id)
+        redirect '/'
       else
         erb :player
       end
@@ -58,7 +61,7 @@ module TicTacToe
     end    
 
     after '/game/:game_id/:choice' do
-      State.update_board(@game_id, @board)
+      State.update_board(@game_id, @board) if State.exists?(@game_id)
     end
 
     run! if app_file == $0

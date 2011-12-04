@@ -3,7 +3,7 @@ body { background-color: #03406A; }
 #game_display {
     padding: 5%;
     margin: 5%;
-    height: 75%;
+    height: 65%;
     text-align: center;
     background-color: #FFC273;
     border-radius: 15px;
@@ -61,8 +61,7 @@ form {
     bottom: 25%;
 }
 
-#result_message {
-    top: 5%;
+#message {
     position: relative;
     border: 1px solid black;
     border-radius: 15px;

@@ -45,4 +45,13 @@ describe TicTacToe::DiskStore do
 
     filepath_for(game_id).should == expected_path
   end
+
+  it "should indicate that a game exists" do
+    game_id = save('')
+    exists?(game_id).should be_true
+  end
+
+  it "should indicate that a game does not exist" do
+    exists?('').should be_false
+  end
 end

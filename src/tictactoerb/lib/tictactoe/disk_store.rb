@@ -43,6 +43,10 @@ module TicTacToe
       end
     end
 
+    def exists?(game_id)
+      File.exists?(filepath_for(game_id))
+    end
+
     def find_available_filename
       game_id = UUIDTools::UUID.timestamp_create
       while File.exists?(filepath_for(game_id))
