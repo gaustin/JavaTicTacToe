@@ -31,7 +31,7 @@ module TicTacToe
     end
 
     post '/game/:game_id/:choice' do
-      if Turn.perform(@board, @position, @scorer)  
+      if Turn.perform(@board, @position, @scorer, @player)  
         clear_error
       else
         set_error "Invalid move."
@@ -45,6 +45,8 @@ module TicTacToe
     end
 
     before '/game/:game_id*' do
+      @player = PlayerFactory.create(?X, PlayerTypes::Human, nil)
+      @player.opponent = PlayerFactory.create(?O, PlayerTypes::MinimaxComputer, nil)
       if params[:game_id] == 'new'
         @board = Board.new(9)
         @game_id = State.save_board(@board)
