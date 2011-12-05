@@ -12,15 +12,14 @@ public class TestPlayerFactory extends TestCase {
     PlayerFactory factory;
     IMessenger messenger;
     public void setUp() {
-        factory = new PlayerFactory();
         messenger = new MockMessenger(new Board(9));
     }
     
     public void testCreate() {
-        Player xPlayer = factory.create('X', PlayerTypes.Human, messenger);
+        Player xPlayer = PlayerFactory.create('X', PlayerTypes.Human, messenger);
         assertNotNull(xPlayer);
         
-        Player oPlayer = factory.create('O', PlayerTypes.NaiveComputer, messenger);
+        Player oPlayer = PlayerFactory.create('O', PlayerTypes.NaiveComputer, messenger);
         assertNotNull(oPlayer);
     }
     

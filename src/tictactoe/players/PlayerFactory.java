@@ -6,7 +6,7 @@ import tictactoe.players.strategies.RandomStrategy;
 
 public class PlayerFactory {
 
-    public Player create(char mark, PlayerTypes playerType, IMessenger messenger) {
+    public static Player create(char mark, PlayerTypes playerType, IMessenger messenger) {
         Player player = null;
         
         switch (playerType) {
