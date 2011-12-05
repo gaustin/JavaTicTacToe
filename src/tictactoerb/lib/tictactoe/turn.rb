@@ -31,7 +31,6 @@ module TicTacToe
       player = HumanPlayer.new(?X)
       opponent = ComputerPlayer.new(?O, MinimaxStrategy.new)
       player.opponent = opponent
-      opponent.opponent = player
       player
     end
 

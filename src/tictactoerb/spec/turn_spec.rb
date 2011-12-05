@@ -27,7 +27,6 @@ describe TicTacToe::Turn do
     HumanPlayer.stub!(:new).with(?X).and_return(human_player)
 
     human_player.should_receive(:opponent=).with(computer_player)
-    computer_player.should_receive(:opponent=).with(human_player)
 
     player = TicTacToe::Turn.player
     player.should == human_player

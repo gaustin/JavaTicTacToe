@@ -21,6 +21,7 @@ public abstract class Player {
     
     public void setOpponent(Player opponent) {
         this.opponent = opponent;
+        opponent.opponent = this;
     }
     
     public abstract int getChoice(Board board);
