@@ -39,10 +39,8 @@ module TicTacToe
       if @scorer.is_game_over
         set_message(@scorer.is_draw ? "The game was a draw!" : "#{@scorer.winner.chr} won!")
         State.delete(@game_id)
-        redirect '/'
-      else
-        erb :player
       end
+      erb :player
     end
 
     before '/game/:game_id*' do

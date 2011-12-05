@@ -84,7 +84,6 @@ describe "TicTacToe" do
     TicTacToe::State.update_board(game_id, board)
     
     post "#{game_url}/2"
-    get last_response["Location"]
     last_response.body.should include("won!")
   end
 

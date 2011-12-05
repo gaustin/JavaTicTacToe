@@ -11,6 +11,11 @@
                 <%= session[:error_statement] %>
             </div>
         <% end %>
+        <% unless session[:message].nil? %>
+          <div id="message">
+            <%= session[:message] %> 
+          </div>
+        <% end %>
     </div>
   </body>
 </html>
