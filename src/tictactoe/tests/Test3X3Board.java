@@ -63,28 +63,38 @@ public class Test3X3Board extends TestCase {
     public void testLoadNullState() {
         board.loadState(null);
         
-        for (int i = 0; i <= 8; i++) {
+        for (int i = 0; i < boardSize; i++) {
         	assertEquals(0, board.markAt(i));
         }
     }
     public void testLoadState() {
-        String state = "XXXXXXXXX";
+        String state = repeat("X", boardSize);
         
         board.loadState(state);
         
-        for (int i = 0; i <= 8; i++) {
+        for (int i = 0; i < boardSize; i++) {
             assertEquals('X', board.markAt(i));
         }
     }
     
     public void testSerializeState() {
-        String expectedState = "XXXXXXXXX";
+        String expectedState = repeat("X", boardSize);
         
-        for (int i = 0; i <= 8; i++) {
+        for (int i = 0; i < boardSize; i++) {
             board.markPosition('X', i);
         }
         
     	String state = board.serializeState();
     	assertEquals(expectedState, state);
+    }
+
+    public String repeat(String str, Integer count) {
+        String s = "";
+        
+        for (int i = 0; i < count; i++) {
+          s += str;
+        }
+
+        return s;
     }
 }
