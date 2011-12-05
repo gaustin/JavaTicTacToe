@@ -1,7 +1,7 @@
 module TicTacToe
-  module GameActions
-
-    def perform_turn(board, player, position, scorer)
+  class Turn
+    # Perform is the only method that is expected to be public
+    def self.perform(board, position, scorer)
       mark = player.mark
       if valid_move?(board, mark, position) && !scorer.is_game_over
         board.mark_position(mark, position)
@@ -12,7 +12,8 @@ module TicTacToe
       end
     end
 
-    def opponent_move(board, scorer)
+    # Following methods considered private.
+    def self.opponent_move(board, scorer)
       choice = opponent.get_choice(board)
       unless scorer.is_game_over
         board.mark_position(opponent.mark, choice)
@@ -22,11 +23,11 @@ module TicTacToe
       end
     end
 
-    def valid_move?(board, mark, choice)
+    def self.valid_move?(board, mark, choice)
       Referee.new.validate_move(board, mark, choice)
     end
 
-    def player
+    def self.player
       player = HumanPlayer.new(?X)
       opponent = ComputerPlayer.new(?O, MinimaxStrategy.new)
       player.opponent = opponent
@@ -34,7 +35,7 @@ module TicTacToe
       player
     end
 
-    def opponent
+    def self.opponent
       player.opponent
     end
   end

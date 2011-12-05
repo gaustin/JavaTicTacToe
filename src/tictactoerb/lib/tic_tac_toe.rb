@@ -6,11 +6,11 @@ require 'tictactoe/disk_store'
 require 'tictactoe/state'
 require 'tictactoe/game_markup'
 require 'tictactoe/user_messaging'
-require 'tictactoe/game_actions'
+require 'tictactoe/turn'
 
 module TicTacToe
   class Web < Sinatra::Base
-    helpers GameMarkup, UserMessaging, GameActions
+    helpers GameMarkup, UserMessaging
  
     set :sessions, true
 
@@ -30,7 +30,7 @@ module TicTacToe
     end
 
     post '/game/:game_id/:choice' do
-      if perform_turn(@board, player, @position, @scorer)  
+      if Turn.perform(@board, @position, @scorer)  
         clear_error
       else
         set_error "Invalid move."
