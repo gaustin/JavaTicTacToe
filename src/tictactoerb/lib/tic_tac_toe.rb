@@ -15,6 +15,7 @@ module TicTacToe
     set :sessions, true
 
     get '/' do
+      clear_message
       clear_error
       erb :new_game
     end

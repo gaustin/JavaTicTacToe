@@ -41,7 +41,7 @@ body { background-color: #03406A; }
     background: #5CCCCC;
 }
 
-form {
+#game_board form {
     line-height: 100%;
     height: 100%;
     margin: 0px;
@@ -73,8 +73,16 @@ form {
     border-radius: 15px;
     height: 2em;
     line-height: 2em;
-    text-align: center;
+    text-align: left;
     background-color: #65A6D1;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+}
+
+.result_new_game {
+    float: right;
+    line-height: 100%;
+    height: 100%;
 }
 
 #error {

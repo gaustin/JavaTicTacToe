@@ -71,7 +71,7 @@ describe "TicTacToe" do
     last_response.body.should_not include("Invalid")
   end
 
-  it "should indicate the game result" do
+  it "should indicate the game result and give a new game button" do
     post '/game/new'
 
     game_url = last_response["Location"]
@@ -85,6 +85,7 @@ describe "TicTacToe" do
     
     post "#{game_url}/2"
     last_response.body.should include("won!")
+    last_response.body.should include("New Game")
   end
 
   it "should delete the game after it's been completed" do

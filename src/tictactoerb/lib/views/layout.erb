@@ -13,7 +13,10 @@
         <% end %>
         <% unless session[:message].nil? %>
           <div id="message">
-            <%= session[:message] %> 
+            <form method="POST" action="/game/new">
+              <%= session[:message] %> 
+              <input class="result_new_game" type="submit" value="New Game" />
+            </form>
           </div>
         <% end %>
     </div>
