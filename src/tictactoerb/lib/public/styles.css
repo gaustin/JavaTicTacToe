@@ -47,19 +47,13 @@ body { background-color: #03406A; }
     margin: 0px;
 }
 
-#new_game {
-    height: 100%;
-    width: 100%;
-}
-
-.new_game {
+.new_game_button {
     width: 50%;
-    height: 50%;
+    height: 2em;
     position: relative;
     font: 1.5em arial,sans-serif;
-    top: 25%;
-    bottom: 25%;
     border-radius: 15px;
+    text-align: left;
 }
 
 .new_game:hover {
