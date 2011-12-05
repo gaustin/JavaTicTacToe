@@ -5,6 +5,10 @@ import tictactoe.players.strategies.IPlayerStrategy;
 
 public class ComputerPlayer extends Player {
     private IPlayerStrategy playerStrategy;
+
+    public IPlayerStrategy getStrategy() {
+        return playerStrategy;
+    }
     
     public ComputerPlayer(char mark, IPlayerStrategy playerStrategy) {
         super(mark);

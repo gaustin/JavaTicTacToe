@@ -22,4 +22,8 @@ public class TestPlayer extends TestCase {
         int choice = player.getChoice(board);
         assertTrue(0 <= choice);
     }
+
+    public void testPlayerStrategy() {
+        assertTrue(player.getStrategy() instanceof RandomStrategy);
+    }
 }
