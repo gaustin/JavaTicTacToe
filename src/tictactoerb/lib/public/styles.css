@@ -52,13 +52,18 @@ form {
     width: 100%;
 }
 
-#new_game input {
+.new_game {
     width: 50%;
     height: 50%;
     position: relative;
     font: 1.5em arial,sans-serif;
     top: 25%;
     bottom: 25%;
+    border-radius: 15px;
+}
+
+.new_game:hover {
+  background: #5CCCCC;
 }
 
 #message {
