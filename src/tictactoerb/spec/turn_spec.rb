@@ -29,8 +29,8 @@ describe TicTacToe::Turn do
     choice.should be_nil
   end
 
-  it "should make two moves when performing a turn" do
-    success = TicTacToe::Turn.perform(@board, 0, @scorer, @player)
+  it "should make two moves when performing a turn with a computer player" do
+    success = TicTacToe::Turn.perform(@board, 0, @scorer, @player, 'O')
     success.should be_true
 
     @board.empty_spaces.size.should == 7

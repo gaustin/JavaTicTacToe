@@ -1,11 +1,11 @@
 module TicTacToe
   class Turn
     # Perform is the only method that is expected to be public
-    def self.perform(board, position, scorer, player)
-      mark = player.mark
+    def self.perform(board, position, scorer, player, turn_mark)
+      mark = turn_mark[0]
       if valid_move?(board, mark, position) && !scorer.is_game_over
         board.mark_position(mark, position)
-        opponent_move(board, scorer, player.opponent)
+        opponent_move(board, scorer, player.opponent) if player.opponent.is_a?(ComputerPlayer)
         true
       else
         false

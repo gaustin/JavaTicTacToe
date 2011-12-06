@@ -6,7 +6,8 @@ describe TicTacToe::State do
     game_id = TicTacToe::State.save(state)
     
     board = TicTacToe::State.load_board(game_id)
-    board.spaces.all? { |mark| mark.chr == 'X' }
+    all_x = board.spaces.all? { |mark| mark.chr == 'X' }
+    all_x.should be_true
   end
 
   it "should save a board" do
@@ -27,5 +28,53 @@ describe TicTacToe::State do
       board.mark_position(?X, i)
     end
     TicTacToe::State.update_board(game_id, board)
+    state = TicTacToe::State.load_board(game_id)
+    state.spaces.all? {|mark| mark.chr == "X" }.should be_true
+  end
+
+  it "should save a board and the player types" do
+    board = Board.new(9)
+    x_player = HumanPlayer.new(?X)
+    o_player = ComputerPlayer.new(?O, MinimaxStrategy.new)
+   
+    game_id = TicTacToe::State.save_game(board, x_player, o_player) 
+    game_id.should_not be_nil
+  end
+
+  it "should load a board and the appropriate player" do
+    board = Board.new(9)
+    (0..8).each do |i|
+      board.mark_position(?X, i)
+    end
+
+    game_id = TicTacToe::State.save_game(board, HumanPlayer.new(?X), ComputerPlayer.new(?O, MinimaxStrategy.new))
+
+    state = TicTacToe::State.load_game(game_id)
+
+    all_x = state.board.spaces.all? { |mark| mark.chr == 'X' }    
+    all_x.should be_true
+
+    state.x_player.is_a?(HumanPlayer).should be_true
+    state.o_player.is_a?(ComputerPlayer).should be_true
+    state.next_turn.should == 'X' 
+  end
+
+  it "should update a game" do
+    board = Board.new(9)
+    board.mark_position(?X, 0);
+    x_player = PlayerFactory.create(?X, PlayerTypes::MinimaxComputer, nil)
+    x_player.opponent = PlayerFactory.create(?O, PlayerTypes::MinimaxComputer, nil)
+    game_id = TicTacToe::State.save_game(board, x_player, x_player.opponent)
+
+    state = TicTacToe::State.load_game(game_id)
+
+    choice = state.x_player.getChoice(state.board);
+    state.board.mark_position(?X, choice);
+
+    TicTacToe::State.update_game(game_id, state.board, x_player, x_player.opponent, 'O')
+
+    state = TicTacToe::State.load_game(game_id)
+    state.board.empty_spaces.size.should == 7
+    state.next_turn.should == 'O'
   end
 end
