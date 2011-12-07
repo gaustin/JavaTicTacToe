@@ -18,7 +18,7 @@ module TicTacToe
       o_player = self.load_player(?O, state_list.shift)
       x_player.opponent = o_player
 
-      Game.new(board, x_player, o_player, state_list.shift)
+      Game.new(board, x_player, o_player, (state_list.shift).to_i)
     end
 
     def self.load_board(state)
@@ -28,7 +28,7 @@ module TicTacToe
     end
 
     def self.load_player(mark, player_type)
-      PlayerFactory.create(mark, PlayerMap.type_for(player_type), nil)
+      PlayerFactory.create(mark, PlayerMap.type_for(player_type), WebMessenger.new)
     end
   end
 end

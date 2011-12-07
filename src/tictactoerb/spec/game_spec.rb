@@ -15,7 +15,7 @@ describe TicTacToe::Game do
   end
 
   it "should initialize from a state string" do
-    state_string = "XXXXXXXXX,1,0,X"
+    state_string = "XXXXXXXXX,1,0,#{?X}"
     game = TicTacToe::Game.load(state_string)
     
     all_x = game.board.spaces.all? {|mark| mark.chr == 'X' }
@@ -24,6 +24,6 @@ describe TicTacToe::Game do
     game.x_player.opponent.should_not be_nil
     game.x_player.is_a?(HumanPlayer).should be_true
     game.o_player.is_a?(ComputerPlayer).should be_true
-    game.next_turn.should == 'X'
+    game.next_turn.should == ?X
   end
 end

@@ -66,17 +66,19 @@ module TicTacToe
     end
 
     def start_new_game
-      @player = PlayerFactory.create(?X, PlayerMap.type_for(params[:x_player]), nil)
-      @player.opponent = PlayerFactory.create(?O, PlayerMap.type_for(params[:o_player]), nil)
+      @x_player = PlayerFactory.create(?X, PlayerMap.type_for(params[:x_player]), WebMessenger.new)
+      @o_player = PlayerFactory.create(?O, PlayerMap.type_for(params[:o_player]), WebMessenger.new)
+      @x_player.opponent = @o_player
       @board = Board.new(9)
-      @game_id = State.save_game(@board, @player, @player.opponent)
+      @game_id = State.save_game(@board, @x_player, @o_player, ?X)
     end
 
     def continue_saved_game
       @game_id = params[:game_id]
       @game = State.load_game(@game_id)
       @board = @game.board
-      @player = @game.x_player
+      @x_player = @game.x_player
+      @o_player = @game.o_player
     end
 
     run! if app_file == $0

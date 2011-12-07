@@ -21,7 +21,7 @@ module TicTacToe
       board
     end
 
-    def self.save_game(board, x_player, o_player, turn_mark='X')
+    def self.save_game(board, x_player, o_player, turn_mark)
       save(self.as_state(board, x_player, o_player, turn_mark))
     end
 
@@ -35,7 +35,7 @@ module TicTacToe
       update(game_id, self.as_state(board, x_player, o_player, turn_mark))
     end
 
-    def self.as_state(board, x_player, o_player, turn_mark='X')
+    def self.as_state(board, x_player, o_player, turn_mark)
       "#{board.serialize_state},#{PlayerMap.string_for_class(x_player.class)},#{PlayerMap.string_for_class(o_player.class)},#{turn_mark}"
     end
   end
