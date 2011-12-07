@@ -15,14 +15,14 @@ describe "TicTacToe" do
     TicTacToe::State.delete_all
   end
 
-#  it "should show the result of a Computer vs. Computer game" do
-#    post "/game/new?x_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::MinimaxComputer)}&o_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::MinimaxComputer)}"
-#
-#    location = last_response["Location"]
-#    get location
-#
-#    last_response.body.should include("draw")
-#  end
+  it "should show the result of a Computer vs. Computer game" do
+    post "/game/new?x_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::MinimaxComputer)}&o_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::MinimaxComputer)}"
+
+    location = last_response["Location"]
+    get location
+
+    last_response.body.should include("draw")
+  end
 
   it "should allow two humans to play" do
     post "/game/new?x_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::Human)}&o_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::Human)}" 
@@ -105,28 +105,11 @@ describe "TicTacToe" do
     (0..1).each do |i|
       board.mark_position(?X, i)
     end
-    TicTacToe::State.update_game(game_id, board, game.x_player, game.o_player, 'X')
+    TicTacToe::State.update_game(game_id, board, game.x_player, game.o_player, ?X)
     
     post "#{game_url}/2"
     last_response.body.should include("won!")
     last_response.body.should include("New Game")
-  end
-
-  it "should delete the game after it's been completed" do
-    post "/game/new?x_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::Human)}&o_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::MinimaxComputer)}"
-
-    game_url = last_response["Location"]
-    game_id = get_game_id(game_url)
-
-    game = TicTacToe::State.load_game(game_id)
-    board = game.board
-    (0..1).each do |i|
-      board.mark_position(?X, i)
-    end
-    TicTacToe::State.update_game(game_id, board, game.x_player, game.o_player, 'X')
-
-    post "#{game_url}/2"
-    TicTacToe::State.exists?(game_id).should be_false 
   end
 
   def get_game_id(url)

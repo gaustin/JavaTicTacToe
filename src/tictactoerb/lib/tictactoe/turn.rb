@@ -1,26 +1,23 @@
 module TicTacToe
   class Turn
-    # Perform is the only method that is expected to be public
-    def self.perform(board, position, scorer, player, turn_mark)
-      mark = turn_mark[0]
-      if valid_move?(board, mark, position) && !scorer.is_game_over
-        board.mark_position(mark, position)
-        opponent_move(board, scorer, player.opponent) if player.opponent.is_a?(ComputerPlayer)
-        true
-      else
-        false
+    def self.attempt_all(board, scorer, x_player, o_player, turn_mark=?X, position=nil)
+      player = self.get_player_for_turn(x_player, o_player, turn_mark)
+      begin
+        choice = position || player.get_choice(board)
+        while !scorer.is_game_over
+          return if !self.valid_move?(board, player.mark, choice)
+          board.mark_position(player.mark, choice)
+          player = player.opponent
+          turn_mark = player.mark
+          choice = player.get_choice(board)
+        end
+      rescue ArgumentError
       end
+      turn_mark
     end
 
-    # Following methods considered private.
-    def self.opponent_move(board, scorer, opponent)
-      choice = opponent.get_choice(board)
-      unless scorer.is_game_over
-        board.mark_position(opponent.mark, choice)
-        choice
-      else
-        nil
-      end
+    def self.get_player_for_turn(x_player, o_player, turn_mark)
+      turn_mark == ?X ? x_player : o_player
     end
 
     def self.valid_move?(board, mark, choice)

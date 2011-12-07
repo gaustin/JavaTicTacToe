@@ -30,20 +30,14 @@ module TicTacToe
     end
 
     get '/game/:game_id' do
-     erb :player
+      do_turn
+      evaluate_turn      
+      erb :player
     end
 
     post '/game/:game_id/:choice' do
-      if Turn.perform(@board, @position, @scorer, @player, @game.next_turn)  
-        clear_error
-      else
-        set_error "Invalid move."
-      end
-  
-      if @scorer.is_game_over
-        set_message(@scorer.is_draw ? "The game was a draw!" : "#{@scorer.winner.chr} won!")
-        State.delete(@game_id)
-      end
+      do_turn      
+      evaluate_turn
       erb :player
     end
 
@@ -53,6 +47,7 @@ module TicTacToe
       else
         continue_saved_game  
       end
+      @scorer = TicTacToeScorer.new(@board)
     end
 
     before '/game/:game_id/:choice' do
@@ -60,9 +55,24 @@ module TicTacToe
       @scorer = TicTacToeScorer.new(@board)
     end    
 
-    after '/game/:game_id/:choice' do
-      next_turn = @game.next_turn == 'X' ? 'O' : 'X'
-      State.update_game(@game_id, @board, @player, @player.opponent, next_turn) if State.exists?(@game_id)
+    after '/game/:game_id*' do
+      State.update_game(@game_id, @board, @x_player, @o_player, @game.next_turn) if State.exists?(@game_id)
+    end
+
+    def do_turn
+      turn_mark = Turn.attempt_all(@board, @scorer, @x_player, @o_player, @game.next_turn, @position) 
+      if !turn_mark.nil?
+        @game.next_turn = turn_mark
+        clear_error
+      else
+        set_error "Invalid move."
+      end
+    end
+
+    def evaluate_turn
+      if @scorer.is_game_over
+        set_message(@scorer.is_draw ? "The game was a draw!" : "#{@scorer.winner.chr} won!")
+      end
     end
 
     def start_new_game
@@ -71,6 +81,7 @@ module TicTacToe
       @x_player.opponent = @o_player
       @board = Board.new(9)
       @game_id = State.save_game(@board, @x_player, @o_player, ?X)
+      @game = State.load_game(@game_id)
     end
 
     def continue_saved_game
