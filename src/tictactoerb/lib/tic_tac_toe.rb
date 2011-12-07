@@ -20,7 +20,7 @@ module TicTacToe
 
     get '/' do
       clear_message
-      clear_error
+      clear_error if !session[:error_message].nil? && session[:error_message].include?("Invalid")
       erb :new_game
     end
 
@@ -43,12 +43,17 @@ module TicTacToe
     end
 
     before '/game/:game_id*' do
-      if params[:game_id] == 'new'
-        start_new_game
-      else
-        continue_saved_game  
+      begin
+        if params[:game_id] == 'new'
+          start_new_game
+        else
+          continue_saved_game  
+        end
+        @scorer = TicTacToeScorer.new(@board)
+      rescue Errno::ENOENT
+        set_error "Cannot find this game. It was probably completed and deleted."
+        redirect '/'
       end
-      @scorer = TicTacToeScorer.new(@board)
     end
 
     before '/game/:game_id/:choice' do
@@ -73,6 +78,7 @@ module TicTacToe
     def evaluate_turn
       if @scorer.is_game_over
         set_message(@scorer.is_draw ? "The game was a draw!" : "#{@scorer.winner.chr} won!")
+        State.delete(@game_id)
       end
     end
 

@@ -112,6 +112,29 @@ describe "TicTacToe" do
     last_response.body.should include("New Game")
   end
 
+  it "should delete the game after it's been completed" do
+    post "/game/new?x_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::Human)}&o_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::MinimaxComputer)}"
+
+    game_url = last_response["Location"]
+    game_id = get_game_id(game_url)
+
+    game = TicTacToe::State.load_game(game_id)
+    board = game.board
+    (0..1).each do |i|
+      board.mark_position(?X, i)
+    end
+    TicTacToe::State.update_game(game_id, board, game.x_player, game.o_player, ?X)
+
+    post "#{game_url}/2"
+    TicTacToe::State.exists?(game_id).should be_false 
+  end
+
+  it "should show an error message when trying to access a deleted game" do
+    get '/game/bogus_id_here'
+    get last_response["Location"]
+    last_response.body.should include("error")
+  end
+
   def get_game_id(url)
     url.split("/").last
   end
