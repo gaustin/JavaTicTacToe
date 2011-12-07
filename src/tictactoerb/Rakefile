@@ -1,0 +1,14 @@
+require 'rubygems'
+require 'uuidtools'
+require 'lib/tictactoe/disk_store'
+require 'lib/tictactoe/tasks'
+
+task :delete_old_games, :hours do |t, args|
+  seconds_in_hour = 60 * 60
+  TicTacToe::Tasks::DeleteGames.do(seconds_in_hour * args.hours.to_i)  
+end
+
+task :generate_crontab, :threshold do |t, args|
+  puts "# Defaults to running every hour"
+  puts "0 * * * * find #{TicTacToe::DiskStore::GAME_DATA_DIR}/*.dat -mtime +#{args.threshold} -exec rm {} \\;"
+end

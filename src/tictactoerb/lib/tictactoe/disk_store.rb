@@ -2,7 +2,7 @@ require 'uuidtools'
 
 module TicTacToe
   module DiskStore
-    GAME_DATA_DIR = File.join(File.dirname(__FILE__), '..', '..', 'db')
+    GAME_DATA_DIR = File.expand_path(File.join(File.dirname(__FILE__), '..', '..', 'db'))
 
     unless File.exists?(GAME_DATA_DIR)
       Dir.mkdir(GAME_DATA_DIR)
