@@ -10,6 +10,7 @@ require 'tictactoe/turn'
 require 'tictactoe/player_map'
 require 'tictactoe/game'
 require 'tictactoe/web_messenger'
+require 'tictactoe/tasks'
 
 module TicTacToe
   class Web < Sinatra::Base

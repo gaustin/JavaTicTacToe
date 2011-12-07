@@ -47,4 +47,13 @@ describe TicTacToe::Turn do
     @scorer.is_draw.should be_true
   end
 
+  it "should perform one move when the computer is X and the player is O" do
+    @x_player = PlayerFactory.create(?X, PlayerTypes::MinimaxComputer, TicTacToe::WebMessenger.new)
+    @o_player = PlayerFactory.create(?O, PlayerTypes::Human, TicTacToe::WebMessenger.new)
+    @x_player.opponent = @o_player
+
+    TicTacToe::Turn.attempt_all(@board, @scorer, @x_player, @o_player)
+    @board.empty_spaces.size.should == 8
+    @scorer.is_game_over.should be_false
+  end
 end
