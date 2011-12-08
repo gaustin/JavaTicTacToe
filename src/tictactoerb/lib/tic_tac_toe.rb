@@ -9,8 +9,8 @@ require 'tictactoe/user_messaging'
 require 'tictactoe/turn'
 require 'tictactoe/player_map'
 require 'tictactoe/game'
-require 'tictactoe/web_messenger'
 require 'tictactoe/tasks'
+require 'tictactoe/human_player'
 
 module TicTacToe
   class Web < Sinatra::Base
@@ -83,8 +83,8 @@ module TicTacToe
     end
 
     def start_new_game
-      @x_player = PlayerFactory.create(?X, PlayerMap.type_for(params[:x_player]), WebMessenger.new)
-      @o_player = PlayerFactory.create(?O, PlayerMap.type_for(params[:o_player]), WebMessenger.new)
+      @x_player = PlayerFactory.create(?X, PlayerMap.type_for(params[:x_player]), nil)
+      @o_player = PlayerFactory.create(?O, PlayerMap.type_for(params[:o_player]), nil)
       @x_player.opponent = @o_player
       @board = Board.new(9)
       @game_id = State.save_game(@board, @x_player, @o_player, ?X)

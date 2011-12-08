@@ -28,7 +28,7 @@ module TicTacToe
     end
 
     def self.load_player(mark, player_type)
-      PlayerFactory.create(mark, PlayerMap.type_for(player_type), WebMessenger.new)
+      PlayerFactory.create(mark, PlayerMap.type_for(player_type), nil)
     end
   end
 end
