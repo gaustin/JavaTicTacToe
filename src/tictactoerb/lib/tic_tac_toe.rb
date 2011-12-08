@@ -2,6 +2,9 @@ require 'rubygems'
 require 'sinatra/base'
 $:.unshift(File.dirname(__FILE__))
 require 'tictactoe/java_constants'
+require 'tictactoe/player_types'
+require 'tictactoe/web_human'
+require 'tictactoe/web_player_factory'
 require 'tictactoe/disk_store'
 require 'tictactoe/state'
 require 'tictactoe/game_markup'
@@ -10,7 +13,6 @@ require 'tictactoe/turn'
 require 'tictactoe/player_map'
 require 'tictactoe/game'
 require 'tictactoe/tasks'
-require 'tictactoe/human_player'
 
 module TicTacToe
   class Web < Sinatra::Base
@@ -83,8 +85,8 @@ module TicTacToe
     end
 
     def start_new_game
-      @x_player = PlayerFactory.create(?X, PlayerMap.type_for(params[:x_player]), nil)
-      @o_player = PlayerFactory.create(?O, PlayerMap.type_for(params[:o_player]), nil)
+      @x_player = WebPlayerFactory.create(?X, PlayerMap.type_for(params[:x_player]))
+      @o_player = WebPlayerFactory.create(?O, PlayerMap.type_for(params[:o_player]))
       @x_player.opponent = @o_player
       @board = Board.new(9)
       @game_id = State.save_game(@board, @x_player, @o_player, ?X)

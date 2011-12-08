@@ -25,7 +25,7 @@ describe "TicTacToe" do
   end
 
   it "should allow two humans to play" do
-    post "/game/new?x_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::Human)}&o_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::Human)}" 
+    post "/game/new?x_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::WebHuman)}&o_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::WebHuman)}" 
 
     location = last_response["Location"]
     game_id = get_game_id(location)
@@ -40,7 +40,7 @@ describe "TicTacToe" do
   end
 
   it "should create an empty game board" do
-    post "/game/new?x_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::Human)}&o_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::MinimaxComputer)}" 
+    post "/game/new?x_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::WebHuman)}&o_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::MinimaxComputer)}" 
 
     location = last_response["Location"]
     game_id = get_game_id(location)
@@ -58,7 +58,7 @@ describe "TicTacToe" do
   end
 
   it "should set an error on an invalid move" do
-    post "/game/new?x_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::Human)}&o_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::MinimaxComputer)}" 
+    post "/game/new?x_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::WebHuman)}&o_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::MinimaxComputer)}" 
 
     game_url = last_response["Location"]
     post game_url + "/0"
@@ -68,7 +68,7 @@ describe "TicTacToe" do
   end
 
   it "should clear the error for a new game" do
-    post "/game/new?x_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::Human)}&o_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::MinimaxComputer)}"
+    post "/game/new?x_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::WebHuman)}&o_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::MinimaxComputer)}"
 
     game_url = last_response["Location"]
     post game_url + "/0"
@@ -76,12 +76,12 @@ describe "TicTacToe" do
     post game_url + "/0"
     last_response.body.should include("Invalid")
     
-    post "/game/new?x_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::Human)}&o_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::MinimaxComputer)}"
+    post "/game/new?x_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::WebHuman)}&o_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::MinimaxComputer)}"
     last_response.body.should_not include("Invalid")
   end
 
   it "should clear an error when a valid move is made after an invalid one" do
-    post "/game/new?x_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::Human)}&o_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::MinimaxComputer)}"
+    post "/game/new?x_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::WebHuman)}&o_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::MinimaxComputer)}"
 
     game_url = last_response["Location"]
     post "#{game_url}/0"
@@ -95,7 +95,7 @@ describe "TicTacToe" do
   end
 
   it "should indicate the game result and give a new game button" do
-    post "/game/new?x_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::Human)}&o_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::MinimaxComputer)}"
+    post "/game/new?x_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::WebHuman)}&o_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::MinimaxComputer)}"
 
     game_url = last_response["Location"]
     game_id = get_game_id(game_url)
@@ -113,7 +113,7 @@ describe "TicTacToe" do
   end
 
   it "should delete the game after it's been completed" do
-    post "/game/new?x_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::Human)}&o_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::MinimaxComputer)}"
+    post "/game/new?x_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::WebHuman)}&o_player=#{TicTacToe::PlayerMap.string_for(PlayerTypes::MinimaxComputer)}"
 
     game_url = last_response["Location"]
     game_id = get_game_id(game_url)

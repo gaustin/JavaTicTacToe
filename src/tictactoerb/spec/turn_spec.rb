@@ -5,8 +5,8 @@ describe TicTacToe::Turn do
   before :each do
     @board = Board.new(9)
     @scorer = TicTacToeScorer.new(@board)
-    @player = PlayerFactory.create(?X, PlayerTypes::Human, nil)
-    @player.opponent = PlayerFactory.create(?O, PlayerTypes::MinimaxComputer, nil)
+    @player = TicTacToe::WebPlayerFactory.create(?X, PlayerTypes::WebHuman, nil)
+    @player.opponent = TicTacToe::WebPlayerFactory.create(?O, PlayerTypes::MinimaxComputer, nil)
   end
 
   it "should discern a valid move" do
@@ -29,7 +29,7 @@ describe TicTacToe::Turn do
   end
 
   it "should make only one move when performing a turn with two human players" do
-    @player.opponent = PlayerFactory.create(?O, PlayerTypes::Human, nil)
+    @player.opponent = TicTacToe::WebPlayerFactory.create(?O, PlayerTypes::WebHuman, nil)
     
     next_turn = TicTacToe::Turn.attempt_all(@board, @scorer, @player, @player.opponent, ?X, 0)
     @board.empty_spaces.size.should == 8 
@@ -37,8 +37,8 @@ describe TicTacToe::Turn do
   end
 
   it "should make all moves when performing a turn with two computer players" do
-    @x_player = PlayerFactory.create(?X, PlayerTypes::MinimaxComputer, nil)
-    @o_player = PlayerFactory.create(?O, PlayerTypes::MinimaxComputer, nil)
+    @x_player = TicTacToe::WebPlayerFactory.create(?X, PlayerTypes::MinimaxComputer, nil)
+    @o_player = TicTacToe::WebPlayerFactory.create(?O, PlayerTypes::MinimaxComputer, nil)
     @x_player.opponent = @o_player
 
     TicTacToe::Turn.attempt_all(@board, @scorer, @x_player, @o_player)
@@ -48,8 +48,8 @@ describe TicTacToe::Turn do
   end
 
   it "should perform one move when the computer is X and the player is O" do
-    @x_player = PlayerFactory.create(?X, PlayerTypes::MinimaxComputer, nil)
-    @o_player = PlayerFactory.create(?O, PlayerTypes::Human, nil)
+    @x_player = TicTacToe::WebPlayerFactory.create(?X, PlayerTypes::MinimaxComputer, nil)
+    @o_player = TicTacToe::WebPlayerFactory.create(?O, PlayerTypes::WebHuman, nil)
     @x_player.opponent = @o_player
 
     TicTacToe::Turn.attempt_all(@board, @scorer, @x_player, @o_player)

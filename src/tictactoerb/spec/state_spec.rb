@@ -47,14 +47,14 @@ describe TicTacToe::State do
       board.mark_position(?X, i)
     end
 
-    game_id = TicTacToe::State.save_game(board, HumanPlayer.new(?X), ComputerPlayer.new(?O, MinimaxStrategy.new), ?X)
+    game_id = TicTacToe::State.save_game(board, TicTacToe::WebHuman.new(?X), ComputerPlayer.new(?O, MinimaxStrategy.new), ?X)
 
     state = TicTacToe::State.load_game(game_id)
 
     all_x = state.board.spaces.all? { |mark| mark.chr == 'X' }    
     all_x.should be_true
 
-    state.x_player.is_a?(HumanPlayer).should be_true
+    state.x_player.is_a?(TicTacToe::WebHuman).should be_true
     state.o_player.is_a?(ComputerPlayer).should be_true
     state.next_turn.should == ?X 
   end
@@ -62,8 +62,8 @@ describe TicTacToe::State do
   it "should update a game" do
     board = Board.new(9)
     board.mark_position(?X, 0);
-    x_player = PlayerFactory.create(?X, PlayerTypes::MinimaxComputer, nil)
-    x_player.opponent = PlayerFactory.create(?O, PlayerTypes::MinimaxComputer, nil)
+    x_player = TicTacToe::WebPlayerFactory.create(?X, PlayerTypes::MinimaxComputer, nil)
+    x_player.opponent = TicTacToe::WebPlayerFactory.create(?O, PlayerTypes::MinimaxComputer, nil)
     game_id = TicTacToe::State.save_game(board, x_player, x_player.opponent, ?X)
 
     state = TicTacToe::State.load_game(game_id)

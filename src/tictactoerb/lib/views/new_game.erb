@@ -5,17 +5,17 @@
       </form>
   </div>
   <div>
-      <form method="POST" action="/game/new?x_player=<%= TicTacToe::PlayerMap.string_for(PlayerTypes::MinimaxComputer) %>&o_player=<%= TicTacToe::PlayerMap.string_for(PlayerTypes::Human) %>">
+      <form method="POST" action="/game/new?x_player=<%= TicTacToe::PlayerMap.string_for(PlayerTypes::MinimaxComputer) %>&o_player=<%= TicTacToe::PlayerMap.string_for(PlayerTypes::WebHuman) %>">
           <input class="new_game_button" type="submit" value="Computer vs. Human" />
       </form>
   </div>
   <div>
-      <form method="POST" action="/game/new?x_player=<%= TicTacToe::PlayerMap.string_for(PlayerTypes::Human) %>&o_player=<%= TicTacToe::PlayerMap.string_for(PlayerTypes::MinimaxComputer) %>">
+      <form method="POST" action="/game/new?x_player=<%= TicTacToe::PlayerMap.string_for(PlayerTypes::WebHuman) %>&o_player=<%= TicTacToe::PlayerMap.string_for(PlayerTypes::MinimaxComputer) %>">
           <input class="new_game_button" type="submit" value="Human vs. Computer" />
       </form>
   </div>
   <div>
-      <form method="POST" action="/game/new?x_player=<%= TicTacToe::PlayerMap.string_for(PlayerTypes::Human) %>&o_player=<%= TicTacToe::PlayerMap.string_for(PlayerTypes::Human) %>">
+      <form method="POST" action="/game/new?x_player=<%= TicTacToe::PlayerMap.string_for(PlayerTypes::WebHuman) %>&o_player=<%= TicTacToe::PlayerMap.string_for(PlayerTypes::WebHuman) %>">
           <input class="new_game_button" type="submit" value="Human vs. Human"  />
       </form>
   </div>

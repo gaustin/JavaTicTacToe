@@ -6,7 +6,7 @@ describe TicTacToe::PlayerMap do
   end
 
   it "should return the key for a Human" do
-    TicTacToe::PlayerMap.string_for(PlayerTypes::Human).should == "1"
+    TicTacToe::PlayerMap.string_for(PlayerTypes::WebHuman).should == "1"
   end
 
   it "should return the player type for a Computer" do
@@ -14,11 +14,11 @@ describe TicTacToe::PlayerMap do
   end
 
   it "should return the player type for a Human" do
-    TicTacToe::PlayerMap.type_for("1").should == PlayerTypes::Human
+    TicTacToe::PlayerMap.type_for("1").should == PlayerTypes::WebHuman
   end
 
   it "should return the string representation for the player class" do
-    TicTacToe::PlayerMap.string_for_class(HumanPlayer).should == "1"
+    TicTacToe::PlayerMap.string_for_class(TicTacToe::WebHuman).should == "1"
   end
 end
 

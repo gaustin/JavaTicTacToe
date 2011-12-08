@@ -2,11 +2,11 @@ module TicTacToe
   class PlayerMap
     STRING_PLAYER_TYPE = {
       "0" => PlayerTypes::MinimaxComputer,
-      "1" => PlayerTypes::Human
+      "1" => PlayerTypes::WebHuman
     }
 
     CLASS_STRING = {
-      HumanPlayer => "1",
+      WebHuman => "1",
       ComputerPlayer => "0"
     }
 

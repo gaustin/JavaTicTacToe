@@ -5,7 +5,7 @@ describe TicTacToe::Game do
   it "should load a player" do
     player = TicTacToe::Game.load_player(?X, "1")
     player.mark.should == ?X
-    player.class.should == HumanPlayer
+    player.class.should == TicTacToe::WebHuman
   end
 
   it "should load a board" do
@@ -22,7 +22,7 @@ describe TicTacToe::Game do
     all_x.should be_true
     
     game.x_player.opponent.should_not be_nil
-    game.x_player.is_a?(HumanPlayer).should be_true
+    game.x_player.is_a?(TicTacToe::WebHuman).should be_true
     game.o_player.is_a?(ComputerPlayer).should be_true
     game.next_turn.should == ?X
   end
